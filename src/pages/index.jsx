@@ -11,7 +11,7 @@ import Section from '../views/Section'
 import useWindowDimensions from '../hooks/WindowDimensions'
 
 
-const Index = () => {
+const Index = ({ location }) => {
   let pages = 1.0
   const { bobross, painting } = useStaticQuery(homeQuery)
   return (
