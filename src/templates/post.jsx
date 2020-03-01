@@ -1,13 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Image from 'gatsby-image'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { darken } from 'polished'
-import tw from 'tailwind.macro'
-import { animated, useSpring, config } from 'react-spring'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Disqus, CommentCount } from 'gatsby-plugin-disqus'
+import { animated, useSpring, config } from 'react-spring'
+import styled from 'styled-components'
+import tw from 'tailwind.macro'
 // Components
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
@@ -116,7 +115,7 @@ const Post = ({ data: { mdx: node }, location }) => {
       </PostHero>
       <ContentBody type="text" className="post-content">
         <PostBody style={contentProps} color={post.color}>
-          <MDXRenderer>{node.code.body}</MDXRenderer>
+          <MDXRenderer>{node.body}</MDXRenderer>
         </PostBody>
         <CommentThread config={disqusConfig} />
       </ContentBody>
@@ -136,9 +135,7 @@ Post.propTypes = {
 export const pageQuery = graphql`
   query($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
-      code {
-        body
-      }
+      body
       excerpt
       fields {
         slug

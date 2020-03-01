@@ -60,7 +60,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-mdx',
+      resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
@@ -90,9 +90,6 @@ module.exports = {
           {
             resolve: 'gatsby-remark-responsive-iframe',
             options: {},
-          },
-          {
-            resolve: 'gatsby-remark-smartypants',
           },
         ],
       },
