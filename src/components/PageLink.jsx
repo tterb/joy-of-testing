@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
-import { colors } from '../../tailwind'
+import { lighten } from 'polished'
 
 const PageLink = (props) => {
   const label = props.label ? props.label : props.children
   return (
-    <AniLink cover
+    <AniLink paintDrip
       className={props.className}
-      bg={colors['background-alt']}
-      direction={props.direction}
+      hex={props.color}
       duration={props.duration}
       aria-label={label}
       to={props.to}>
@@ -19,13 +18,13 @@ const PageLink = (props) => {
 }
 
 PageLink.defaultProps = {
-  direction: 'left',
-  duration: 1.15,
+  duration: 0.75,
+  color: '#EEEEEE',
 }
 PageLink.propTypes = {
   className: PropTypes.string,
   duration: PropTypes.number,
-  direction: PropTypes.string,
+  color: PropTypes.string,
   label: PropTypes.string,
   to: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
