@@ -163,3 +163,5 @@ public
 
 ### Other ###
 src/images/unused
+*.ai
+*.psd
