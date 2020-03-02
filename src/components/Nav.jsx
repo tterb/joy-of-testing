@@ -153,6 +153,12 @@ const Line = styled.div`
   }
 `
 
+const LogoWrapper = styled(PageLink)`
+  ${tw`relative w-1/5`}
+  max-width: 180px;
+  top: -0.35rem;
+`
+
 const MenuButton = ({ status, onClick }) => (
   <Button className={`menu-button ${status}`} onClick={onClick}>
     <Line className='half start' />
@@ -183,16 +189,16 @@ class Nav extends React.Component {
   isPanelVisible = () => (this.state.panel ? 'active' : '')
 
   render() {
-    const { logo, mobile, theme } = this.props
+    const { logo, mobile, color, theme } = this.props
     return (
       <StaticQuery query={menuQuery}
         render={data => (
           <Wrapper className='nav-wrapper'>
             <Fade top delay={250}>
               <MenuContainer>
-                <PageLink className='logo-container relative w-1/5' to={data.site.siteMetadata.menuLinks[0].link}>
+                <LogoWrapper to={data.site.siteMetadata.menuLinks[0].link}>
                     <Image className='logo-image' fluid={data.logo.childImageSharp.fluid} />
-                </PageLink>
+                </LogoWrapper>
                 { mobile ?
                   <MenuButton status={this.isPanelVisible()} onClick={this.togglePanel} />
                   :
@@ -208,7 +214,7 @@ class Nav extends React.Component {
                         }
                         return (
                           <MenuItem className='menu-item' key={item.name}>
-                            <PageLink to={item.link}>{item.name}</PageLink>
+                            <PageLink color={color} to={item.link}>{item.name}</PageLink>
                           </MenuItem>
                         )
                       })}
@@ -247,7 +253,13 @@ Nav.defaultProps = {
 }
 Nav.propTypes = {
   logo: PropTypes.bool,
+  color: PropTypes.string,
   mobile: PropTypes.bool,
+  theme: PropTypes.shape({
+    colors: PropTypes.shape({
+      accent: PropTypes.string,
+    }),
+  }),
 }
 
 export default Nav

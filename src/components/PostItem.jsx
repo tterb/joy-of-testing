@@ -5,7 +5,8 @@ import Image from 'gatsby-image'
 import { animated } from 'react-spring'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import theme from '../../config/theme'
+// Components
+import PageLink from './PageLink'
 
 
 const Item = styled(animated.div)`
@@ -73,14 +74,14 @@ const PostItem = ({ node, style, testid }) => (
       <ImageWrapper>
         <Image fluid={node.frontmatter.thumbnail.childImageSharp.fixed} />
       </ImageWrapper>
-      <Link to={node.fields.slug}>
+      <PageLink to={node.fields.slug}>
         <TracedGlow src={node.frontmatter.thumbnail.childImageSharp.fixed.tracedSVG} alt={node.frontmatter.title} />
         <Overlay style={{ backgroundColor: node.frontmatter.color }} />
         <TextWrapper>
           <Title>{node.frontmatter.title}</Title>
           <p>{node.frontmatter.desc}</p>
         </TextWrapper>
-      </Link>
+      </PageLink>
     </Content>
   </Item>
 )

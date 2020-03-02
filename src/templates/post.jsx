@@ -7,6 +7,7 @@ import { Disqus, CommentCount } from 'gatsby-plugin-disqus'
 import { animated, useSpring, config } from 'react-spring'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
+import { darken, rgba } from 'polished'
 // Components
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
@@ -17,7 +18,7 @@ import PostImage from '../components/PostImage'
 import site from '../../config/website'
 
 const HeaderContent = styled(Wrapper)`
-  ${tw`absolute w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-0 z-3`}
+  ${tw`absolute w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-4 z-5`}
   color: rgba(0,0,0,0.8);
 `
 
@@ -38,8 +39,8 @@ const PostDetail = styled(animated.div)`
   span::after {
     position: relative;
     content: '•';
+    color: ${props => props.color};
     font-size: 0.7rem;
-    color: rgba(0,0,0,0.35);
     top: -2px;
     padding: 0 4px;
   }
@@ -62,12 +63,13 @@ const PostDate = styled.span`
 `
 
 const PostBody = styled(animated.div)`
-  ${tw`m-auto mb-12`}
+  ${tw`m-auto mb-16`}
   a {
     ${tw`no-underline`}
-    color: ${props => props.color};
+    color: ${props => darken(0.1, props.color)} !important;
+    transition: color 250ms ease-in-out;
     &:hover {
-      color: ${props => props.color};
+      color: ${props => darken(0.25, props.color)} !important;
     }
   }
 `
@@ -93,7 +95,7 @@ const Post = ({ data: { mdx: node }, location }) => {
   }
 
   return (
-    <Layout pathname={location.pathname} customSEO>
+    <Layout pathname={location.pathname} color={post.color} customSEO>
       <SEO pathname={location.pathname} node={node} article />
       <PostHero>
         <PostImage customcolor={post.color}>
@@ -103,7 +105,7 @@ const Post = ({ data: { mdx: node }, location }) => {
           <Title data-testid="post-title" style={titleProps}>
             {post.title}
           </Title>
-          <PostDetail style={infoProps}>
+          <PostDetail color={post.color} style={infoProps}>
             <PostDate>
               {post.date.split(' ').map((item, i) => (
                 (i !== 1) ? <strong key={i}>{item}</strong> : item
@@ -148,7 +150,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        date(formatString: "DD MMMM YYYY")
+        date(formatString: "DD MMM YYYY")
         desc
         color
         cover {

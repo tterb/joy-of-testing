@@ -15,11 +15,11 @@ const Wrapper = styled.div`
 `
 
 const QuoteText = styled.h2`
-  ${tw`text-4xl font-hairline text-center w-7/10 m-auto`}
+  ${tw`text-4xl font-hairline text-center w-7/10 lg:w-3/5 m-auto`}
 `
 
 const AuthorWrapper = styled.div`
-  ${tw`flex flex-row w-7/10  m-auto`}
+  ${tw`flex flex-row w-7/10 lg:w-3/5 m-auto`}
 `
 
 const QuoteAuthor = styled.h3`

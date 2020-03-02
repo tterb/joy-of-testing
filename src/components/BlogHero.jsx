@@ -39,12 +39,14 @@ const BlogHero = () => (
   <Wrapper>
     <Header>
       <Title>
-        <span>Happy</span>
-        <span>Little</span>
-        <span>Trees<span className='accent'>.</span></span>
+        <span>The Joy</span>
+        <span>of Painting<span className='accent'>.</span></span>
       </Title>
     </Header>
   </Wrapper>
 )
+{/* <span>Happy</span>
+<span>Little</span>
+<span>Trees */}
 
 export default BlogHero

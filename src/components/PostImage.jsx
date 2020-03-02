@@ -14,6 +14,7 @@ const PostImage = styled.div`
     position: static !important;
     filter: grayscale(100%);
     min-height: 100%;
+    margin-top: -3rem;
     > div {
       padding-bottom: 50vw !important;
       @media (max-width: ${props => props.theme.breakpoints.m}),
@@ -35,14 +36,14 @@ const PostImage = styled.div`
     css`
       &:before {
         ${tw`absolute w-full h-full pin-t pin-l z-2`}
-        background: ${`linear-gradient(to top, rgba(0, 0, 0, 0) 0%, ${rgba(props.customcolor, 1)} 100%)`};
+        background: ${`linear-gradient(to top, rgba(0, 0, 0, 0) 0%, ${rgba(props.customcolor, 0.6)} 100%)`};
         content: '';
         mix-blend-mode: overlay;
       }
     `}
   &:after {
     ${tw`absolute w-full h-full pin-t pin-l z-2`}
-    background: ${({ theme }) => `linear-gradient(to bottom, ${shade} 0%, #fff 100%), linear-gradient(to right, ${shade} 50%, #fff 100%)`};
+    background: ${({ theme }) => `linear-gradient(to bottom, ${shade} 0%, #fff 100%), linear-gradient(to right, ${shade} 80%, #fff 100%)`};
     content: '';
     backface-visibility: hidden;
   }

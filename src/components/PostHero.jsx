@@ -2,10 +2,8 @@ import styled from 'styled-components'
 import tw from 'tailwind.macro'
 
 const PostHero = styled.section`
-  ${tw`relative overflow-hidden`}
+  ${tw`relative overflow-hidden mt-0 mb-4`}
   height: 50vh;
-  margin-top: 0;
-  margin-bottom: 2rem;
   @media (max-width: 620px), (max-device-width: 620px) {
     margin-top: -5.5rem;
   }

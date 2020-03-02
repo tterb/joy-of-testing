@@ -33,10 +33,6 @@ const styles = css`
       }
     }
   }
-
-  .logo-container {
-    top: -0.35rem;
-  }
 `
 
 export default styles
