@@ -73,7 +73,9 @@
     "styled-components": "^5.0.0-beta.8",
     "styled-theming": "^2.2.0",
     "tailwind.macro": "0.5.10",
-    "tailwindcss": "0.7.4"
+    "tailwindcss": "0.7.4",
+    "typeface-lato": "^0.0.75",
+    "typeface-lora": "^0.0.72"
   },
   "peerDependencies": {
     "stylis": "^3.5.0"

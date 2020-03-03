@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Parallax } from 'react-spring/renderprops-addons'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
-import { darken } from 'polished'
 // Componemts
 import Nav from './Nav'
 import SEO from './SEO'
@@ -13,7 +12,9 @@ import theme from '../../config/theme'
 // Styles
 import styles from '../styles/styles'
 import '../styles/main.scss'
-
+// Typefaces
+import 'typeface-lato'
+import 'typeface-lora'
 
 const GlobalStyle = createGlobalStyle`
   ${styles}
