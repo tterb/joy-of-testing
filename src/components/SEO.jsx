@@ -19,11 +19,11 @@ const Head = props => {
   const homeURL = `${site.siteUrl}${realPrefix}`
   const URL = `${site.siteUrl}${replaceTrailing(pathname) || realPrefix}`
 
-  if (article || single) {
+  if (article) {
     const postMeta = node.frontmatter
     const postImage = postMeta.cover.childImageSharp.resize.src
     title = `${postMeta.title} | ${site.siteTitle}`
-    description = node.excerpt
+    description = node.frontmatter.description
     image = `${homeURL}${postImage}`
   } else {
     title = site.siteTitleAlt
