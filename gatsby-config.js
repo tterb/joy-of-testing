@@ -4,12 +4,17 @@ const dotenv = require(`dotenv`)
 
 const pathPrefix = config.pathPrefix === `/` ? `` : config.pathPrefix
 
-if (process.env.ENVIRONMENT !== 'production')
-  dotenv.config();
+let activeEnv =
+  process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || `development`
 
 dotenv.config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env.${activeEnv}`,
 })
+
+const SHORTNAME = `happy-little-trees`
+const PROTOCOL = process.env.PROTOCOL || `https`
+const URL = process.env.URL || `.disqus.com/embed.js`
+const EMBED_URL = `${PROTOCOL}://${SHORTNAME}${URL}`
 
 module.exports = {
   /* General Information */
@@ -44,7 +49,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-        shortname: `happy-little-trees`,
+        shortname: SHORTNAME,
+        embedUrl: EMBED_URL,
       },
     },
     {
