@@ -12,6 +12,7 @@
     "develop": "gatsby develop --port 4000",
     "local": "GATSBY_ACTIVE_ENV=local yarn develop",
     "backend": "GATSBY_ACTIVE_ENV=backend yarn develop",
+    "production": "yarn build && gatsby serve",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .js,.jsx --fix --ignore-path .gitignore",
     "lint:ci": "yarn lint --format junit -o results/eslint/result.xml"
