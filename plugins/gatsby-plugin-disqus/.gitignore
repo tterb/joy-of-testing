@@ -120,7 +120,7 @@ lib/*
 .release*.yml
 
 # Build files
-./components
-gatsby-node.js
-index.js
-utils.js
+/components
+/gatsby-node.js
+/index.js
+/utils.js
