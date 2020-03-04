@@ -6,10 +6,10 @@
   "homepage": "https://tterb-gatsby.netlify.com",
   "license": "MIT",
   "scripts": {
+    "build": "yarn build-plugin && gatsby build",
+    "build-plugin": "yarn --cwd ./plugins/gatsby-plugin-disqus && yarn --cwd ./plugins/gatsby-plugin-disqus build",
     "bootstrap": "yarn && yarn build-plugin",
     "develop": "gatsby develop --port 4000",
-    "build": "gatsby build",
-    "build-plugin": "yarn --cwd ./plugins/gatsby-plugin-disqus && yarn --cwd ./plugins/gatsby-plugin-disqus build",
     "local": "GATSBY_ACTIVE_ENV=local yarn develop",
     "backend": "GATSBY_ACTIVE_ENV=backend yarn develop",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
