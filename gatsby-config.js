@@ -56,7 +56,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        postCssPlugins: [require('tailwindcss')('./tailwind.js')],
+        postCssPlugins: [require(`tailwindcss`)(`./tailwind.js`)],
       },
     },
     {
@@ -66,7 +66,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-mdx',
+      resolve: `gatsby-plugin-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
@@ -94,7 +94,7 @@ module.exports = {
             },
           },
           {
-            resolve: 'gatsby-remark-responsive-iframe',
+            resolve: `gatsby-remark-responsive-iframe`,
             options: {},
           },
         ],
@@ -110,13 +110,13 @@ module.exports = {
       resolve: `gatsby-plugin-postcss`, // Implements PostCSS
       options: {
         postCssPlugins: [
-          require(`postcss-import`), // Add support for sass-like '@import'
-          require(`postcss-extend`), // Add support for sass-like '@extend'
+          require(`postcss-import`), // Add support for sass-like `@import`
+          require(`postcss-extend`), // Add support for sass-like `@extend`
           require(`postcss-nesting`), // Add support for sass-like nesting of rules
-          require('postcss-calc'),
-          require('postcss-discard-comments'),
+          require(`postcss-calc`),
+          require(`postcss-discard-comments`),
           require(`cssnano`), // Minify CSS
-          require('postcss-reporter'),
+          require(`postcss-reporter`),
           require(`postcss-pxtorem`)({
             mediaQuery: false, // Ignore media queries
             minPixelValue: 0, // Minimal pixel value that will be processed
@@ -171,7 +171,7 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: `gatsby-plugin-manifest`,
       options: {
         name: config.siteTitle,
         short_name: config.siteTitleShort,
@@ -179,22 +179,11 @@ module.exports = {
         start_url: config.pathPrefix,
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
-        display: 'standalone',
-        icons: [
-          {
-            src: '/favicon/android-chrome-192x192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/favicon/android-chrome-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
+        display: `standalone`,
+        icon: `static/favicon/favicon.png`,
       },
     },
-    'gatsby-plugin-netlify',
+    `gatsby-plugin-netlify`,
     /* Must be placed at the end */
     `gatsby-plugin-offline`,
   ],
