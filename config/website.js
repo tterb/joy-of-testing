@@ -7,7 +7,7 @@ module.exports = {
   siteTitleAlt: `Bob Ross`, // Alternative Site title for SEO
   siteTitleShort: `Bob Ross`, // short_name for manifest
   siteHeadline: `Bob Ross`, // Headline for schema.org JSONLD
-  siteUrl: `https://happy-little-trees.netlify.com`, // Domain of your site. No trailing slash!
+  siteUrl: `https://joy-of-testing.netlify.com`, // Domain of your site. No trailing slash!
   siteKeywords: [`bob-ross`, `paintings`, `disqus`],
   siteLanguage: `en`, // Language Tag on <html> element
   siteLogo: `/icon.png`, // Used for SEO and manifest
