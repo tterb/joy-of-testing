@@ -68,25 +68,25 @@ const Title = styled.h2`
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 `
 
-const PostItem = ({ node, style, testid }) => (
-  <Item key={node.fields.slug} style={style} data-testid={testid}>
+const PostItem = ({ post, style, testid }) => (
+  <Item key={post.fields.slug} style={style} data-testid={testid}>
     <Content>
       <ImageWrapper>
-        <Image fluid={node.frontmatter.thumbnail.childImageSharp.fixed} />
+        <Image fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
       </ImageWrapper>
-      <PageLink to={node.fields.slug}>
-        <TracedGlow src={node.frontmatter.thumbnail.childImageSharp.fixed.tracedSVG} alt={node.frontmatter.title} />
-        <Overlay style={{ backgroundColor: node.frontmatter.color }} />
+      <PageLink to={post.fields.slug}>
+        <TracedGlow src={post.frontmatter.thumbnail.childImageSharp.fluid.tracedSVG} alt={post.frontmatter.title} />
+        <Overlay style={{ backgroundColor: post.frontmatter.color }} />
         <TextWrapper>
-          <Title>{node.frontmatter.title}</Title>
-          <p>{node.frontmatter.desc}</p>
+          <Title>{post.frontmatter.title}</Title>
+          <p>{post.frontmatter.desc}</p>
         </TextWrapper>
       </PageLink>
     </Content>
   </Item>
 )
 PostItem.propTypes = {
-  node: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
   style: PropTypes.object.isRequired,
   testid: PropTypes.string.isRequired,
 }

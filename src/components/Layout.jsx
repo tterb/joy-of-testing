@@ -43,8 +43,8 @@ Layout.propTypes = {
   navLogo: PropTypes.any,
   customSEO: PropTypes.bool,
   color: PropTypes.string,
+  pages: PropTypes.number,
   pathname: PropTypes.string.isRequired,
-  pages: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
