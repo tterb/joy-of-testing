@@ -1,9 +1,9 @@
 {
-  "name": "happy-little-trees",
-  "description": "A happy little testing website for experimenting with published data",
+  "name": "joy-of-testing",
+  "description": "A website for testing and experimenting with published data",
   "version": "1.0.0",
   "author": "Brett Stevenson <bstevensondev@gmail.com> (https://brettstevenson.io)",
-  "homepage": "https://tterb-gatsby.netlify.com",
+  "homepage": "https://joy-of-testing.netlify.com",
   "license": "MIT",
   "scripts": {
     "build": "yarn build-plugin && gatsby build",
