@@ -43,7 +43,7 @@ const Blog = ({
               testid={`postItem-${index}`}
               style={style}
               key={post[index].node.fields.slug}
-              node={post[index].node}
+              post={post[index].node}
             />
           ))}
         </ListWrapper>
@@ -85,9 +85,9 @@ export const blogQuery = graphql`
               }
             }
             thumbnail: cover {
-                childImageSharp {
-                fixed(width: 480, quality: 90, traceSVG: { color: "#ffffff" }) {
-                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+              childImageSharp {
+                fluid(maxWidth: 480, quality: 90, traceSVG: { color: "#ffffff" }) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
             }
