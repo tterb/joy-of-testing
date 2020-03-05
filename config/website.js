@@ -16,5 +16,6 @@ module.exports = {
     name: `Brett Stevenson`,
     bio: `Software engineer at Disqus`,
   },
+  googleTrackingID: `UA-82760104-3`,
   disqusShortname: `happy-little-trees`,
 }

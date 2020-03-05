@@ -11,8 +11,6 @@ dotenv.config({
   path: `.env.${activeEnv}`,
 })
 
-console.log(activeEnv)
-
 const SHORTNAME = `happy-little-trees`
 const PROTOCOL = process.env.PROTOCOL || `https`
 const BASE = process.env.BASE || `disqus.com/embed.js`
@@ -141,6 +139,14 @@ module.exports = {
         // develop: true, // Enable while using `gatsby develop`
         tailwind: true, // Enable tailwindcss support
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: config.googleAnalyticsID,
+        pageTransitionDelay: 1000,
+        head: true,
+      },
     },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
