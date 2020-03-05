@@ -18,20 +18,17 @@ import PostImage from '../components/PostImage'
 import site from '../../config/website'
 
 const HeaderContent = styled(Wrapper)`
-  ${tw`absolute w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-4 z-5`}
+  ${tw`absolute w-9/10 lg:w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-4 z-5`}
   color: rgba(0,0,0,0.8);
 `
 
 const ContentBody = styled(Wrapper)`
-  ${tw`w-4/5 mx-auto mb-12`}
+  ${tw`w-9/10 lg:w-4/5 mx-auto mb-12`}
   color: rgba(0,0,0,0.75);
 `
 
 const Title = styled(animated.h1)`
   ${tw`text-5xl md:text-6xl font-black leading-tighter w-9/10 my-0`}
-  @media screen and (max-width: 560px) {
-    font-size: 4.5rem;
-  }
 `
 
 const PostDetail = styled(animated.div)`

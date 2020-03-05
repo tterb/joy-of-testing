@@ -14,7 +14,7 @@ const PostImage = styled.div`
     position: static !important;
     filter: grayscale(100%);
     min-height: 100%;
-    margin-top: -3rem;
+    /* margin-top: -3rem; */
     > div {
       padding-bottom: 50vw !important;
       @media (max-width: ${props => props.theme.breakpoints.m}),
