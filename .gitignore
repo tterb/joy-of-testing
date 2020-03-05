@@ -163,5 +163,7 @@ public
 
 ### Other ###
 src/images/unused
+static/favicon/
 *.ai
 *.psd
+**/*_.*
