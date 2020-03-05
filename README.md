@@ -82,3 +82,11 @@ $ yarn build-plugin
 
 The example posts are written in [MDX](https://mdxjs.com/) and sourced from the `src/contents/posts/` directory, where you will find a subdirectory for each existing post. There you create a new post that matches the structure of the existing examples.  
 If you're looking for some inspiration, the current post contents are courtesy of [bobrosslipsum.com](https://www.bobrosslipsum.com/).  
+
+### Production  
+
+To build and locally serve a production build you can use the command:
+
+```sh
+$ yarn production
+```
