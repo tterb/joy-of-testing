@@ -182,7 +182,7 @@ module.exports = {
         background_color: config.backgroundColor,
         theme_color: config.themeColor,
         display: `standalone`,
-        icon: `static/favicon/favicon.png`,
+        icon: `static/favicon.png`,
       },
     },
     `gatsby-plugin-netlify`,
