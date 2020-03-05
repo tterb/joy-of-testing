@@ -149,21 +149,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Lato`,
-            variants: [`300`, `400`, `700`, `900`]
-          },
-          {
-            family: `Lora`,
-            variants: [`400`, `700`]
-          },
-        ],
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
