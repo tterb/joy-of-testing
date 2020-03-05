@@ -11,10 +11,12 @@ dotenv.config({
   path: `.env.${activeEnv}`,
 })
 
+console.log(activeEnv)
+
 const SHORTNAME = `happy-little-trees`
 const PROTOCOL = process.env.PROTOCOL || `https`
-const URL = process.env.URL || `.disqus.com/embed.js`
-const EMBED_URL = `${PROTOCOL}://${SHORTNAME}${URL}`
+const BASE = process.env.BASE || `disqus.com/embed.js`
+const EMBED_URL = `${PROTOCOL}://${SHORTNAME}.${BASE}`
 
 module.exports = {
   /* General Information */

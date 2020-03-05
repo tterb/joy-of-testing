@@ -9,6 +9,7 @@ exports.onPreInit = (_ref, pluginOptions) => {
   delete pluginOptions.plugins
   shortname = pluginOptions.shortname
   embedUrl = pluginOptions.embedUrl
+  console.log(`url: ${embedUrl}`)
 
   if (didRunAlready) {
     throw new Error('You can only have single instance of gatsby-plugin-disqus in your gatsby-config.js')
