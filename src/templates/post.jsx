@@ -23,12 +23,12 @@ const HeaderContent = styled(Wrapper)`
 `
 
 const ContentBody = styled(Wrapper)`
-  ${tw`w-9/10 lg:w-4/5 mx-auto mb-12`}
+  ${tw`w-9/10 lg:w-4/5 mx-auto pb-12`}
   color: rgba(0,0,0,0.75);
 `
 
 const Title = styled(animated.h1)`
-  ${tw`text-5xl md:text-6xl font-black leading-tighter w-9/10 my-0`}
+  ${tw`text-5xl sm:text-6xl md:text-7xl font-black leading-tighter w-9/10 my-0`}
 `
 
 const PostDetail = styled(animated.div)`
@@ -72,7 +72,7 @@ const PostBody = styled(animated.div)`
 `
 
 const CommentThread = styled(Disqus)`
-  ${tw`w-full mx-auto`}
+  ${tw`w-full mx-auto pb-8`}
 `
 
 const Post = ({ data: { mdx: node }, location }) => {

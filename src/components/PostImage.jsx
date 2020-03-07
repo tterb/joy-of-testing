@@ -19,7 +19,7 @@ const PostImage = styled.div`
       padding-bottom: 50vw !important;
       @media (max-width: ${props => props.theme.breakpoints.m}),
         (max-device-width: ${props => props.theme.breakpoints.m}) {
-        padding-bottom: ${props => (props.single ? '40vw' : '60vw')};!important;
+        padding-bottom: ${props => (props.single ? '40vw' : '60vw')} !important;
       }
       @media (max-width: ${props => props.theme.breakpoints.s}),
         (max-device-width: ${props => props.theme.breakpoints.s}) {
