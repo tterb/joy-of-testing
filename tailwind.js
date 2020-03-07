@@ -276,10 +276,10 @@ module.exports = {
     xl:     '1.25rem', // 20px
     '2xl':   '1.5rem', // 24px
     '3xl':     '2rem',
-    '4xl':  '2.25rem',
+    '4xl':  '2.75rem',
     '5xl':  '3.75rem',
-    '6xl':     '5rem',
-    '7xl':   '5.5rem',
+    '6xl':     '4rem',
+    '7xl':     '5rem',
     '8xl':   '6.5rem',
     '9xl':     '7rem',
     '10xl':    '8rem',
@@ -476,6 +476,7 @@ module.exports = {
     6:         '1.5rem',
     7:        '1.75rem',
     8:           '2rem',
+    9:        '2.25rem',
     10:        '2.5rem',
     12:          '3rem',
     14:        '3.5rem',
