@@ -17,7 +17,7 @@ import styles from '../styles/styles'
 import '../styles/main.scss'
 // Typefaces
 import 'typeface-lato'
-import 'typeface-neuton'
+import 'typeface-lora'
 
 const GlobalStyle = createGlobalStyle`
   ${styles}
