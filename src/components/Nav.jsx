@@ -155,8 +155,9 @@ const Line = styled.div`
 
 const LogoWrapper = styled(PageLink)`
   ${tw`relative w-1/5`}
-  max-width: 180px;
-  top: -0.35rem;
+  min-width: 9.25rem;
+  max-width: 11.25rem;
+  top: -0.5rem;
 `
 
 const MenuButton = ({ status, onClick }) => (
