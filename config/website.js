@@ -18,4 +18,10 @@ module.exports = {
   },
   googleTrackingID: `UA-82760104-3`,
   disqusShortname: `happy-little-trees`,
+  // Links
+  links: {
+    github: `https://github.com/tterb/joy-of-testing`,
+    disqus: `https://disqus.com/home/forum/happy-little-trees`,
+    gatsby: `https://gatsbyjs.com`,
+  },
 }
