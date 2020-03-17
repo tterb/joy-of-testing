@@ -12,7 +12,7 @@ const PostImage = styled.div`
   box-sizing: border-box;
   .gatsby-image-wrapper {
     position: static !important;
-    filter: grayscale(100%);
+    /* filter: grayscale(100%); */
     min-height: 100%;
     /* margin-top: -3rem; */
     > div {
@@ -31,7 +31,7 @@ const PostImage = styled.div`
       }
     }
   }
-  ${props =>
+  /* ${props =>
     props.customcolor &&
     css`
       &:before {
@@ -40,10 +40,10 @@ const PostImage = styled.div`
         content: '';
         mix-blend-mode: overlay;
       }
-    `}
+    `} */
   &:after {
     ${tw`absolute w-full h-full pin-t pin-l z-2`}
-    background: ${({ theme }) => `linear-gradient(to bottom, ${shade} 0%, #fff 100%), linear-gradient(to right, ${shade} 80%, #fff 100%)`};
+    background: ${({ theme }) => `linear-gradient(to bottom, ${shade} 0%, #fff 100%), linear-gradient(to right, ${shade} 85%, #fff 100%)`};
     content: '';
     backface-visibility: hidden;
   }
