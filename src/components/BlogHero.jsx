@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
+import CanvasDraw from 'react-canvas-draw'
 
 
 const Wrapper = styled.div`
@@ -12,41 +13,113 @@ const Wrapper = styled.div`
 const Header = styled.div`
   ${tw`flex flex-col-reverse w-full`}
   height: 40vh;
-  > div {
-    padding-bottom: 28% !important;
-  }
 `
 
 const TitleWrapper = styled.div`
-  ${tw`flex flex-col justify-end self-start pt-16 px-9`}
+  ${tw`absolute flex flex-col justify-end self-start pin-b pt-16 px-9`}
 `
 
 const Title = styled.h1`
-  ${tw`font-black m-6 mb-8`}
+  ${tw`absolute font-black pin-b m-6 mb-8`}
   color: rgba(0,0,0,0.75);
   font-size: 4.25rem;
   span {
     display: block;
     line-height: 0.9;
-    .accent {
-      display: inline-block;
-      color: red;
-    }
   }
 `
 
-const BlogHero = () => (
-  <Wrapper>
-    <Header>
-      <Title>
-        <span>The Joy</span>
-        <span>of Painting<span className='accent'>.</span></span>
-      </Title>
-    </Header>
-  </Wrapper>
-)
-{/* <span>Happy</span>
-<span>Little</span>
-<span>Trees */}
+const Canvas = styled(CanvasDraw)`
+  ${tw`absolute pin-t`}
+  width: 100vw !important; */
+  height: 50vh;
+`
+
+const Dot = styled.span`
+  ${tw`relative rounded-full pointer z-999`}
+  display: inline-block !important;
+  content: '';
+  width: 14px;
+  height: 14px;
+`
+
+class BlogHero extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      index: 0,
+      brushColor: '#000000',
+      nextColor: '#F2433B',
+      canvasVisible: false,
+      viewWidth: 0,
+      viewHeight: 0,
+    }
+    this.colors = [
+      '#000000',  // black
+      '#F2433B',  // red
+      '#F48A02',  // orange
+      '#F2C029',  // yellow
+      '#2AAE4A',  // green
+      '#15BBC5',  // teal
+      '#3096DB',  // blue
+      '#4449D0',  // indigo
+      '#8F58E2',  // purple
+      '#CF4B6C',  // pink
+    ]
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions()
+    window.addEventListener('resize', this.updateWindowDimensions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions)
+  }
+
+  updateWindowDimensions = () => {
+    this.setState({ viewWidth: window.innerWidth, viewHeight: window.innerHeight });
+  };
+
+  handleClick() {
+    let index = this.state.index+1
+    this.setState({
+      index,
+      brushColor: this.colors[(index%this.colors.length)],
+      nextColor: this.colors[(index+1)%this.colors.length],
+      canvasVisible: true,
+    })
+  }
+
+  render() {
+    return (
+      <Wrapper>
+        <Header>
+          {this.state.canvasVisible ?
+            <Canvas
+              brushColor={`${this.state.brushColor}b0`}
+              canvasWidth={this.state.viewWidth}
+              canvasHeight={this.state.viewHeight/2}
+              lazyRadius={10}
+              hideGrid={true}
+            /> : null
+          }
+          <Title>
+            <span>The Joy</span>
+            <span>of Testing
+              <Dot
+                onClick={this.handleClick}
+                style={{ background: this.state.nextColor }}
+              />
+            </span>
+          </Title>
+        </Header>
+      </Wrapper>
+    )
+  }
+}
 
 export default BlogHero
