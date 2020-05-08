@@ -74,7 +74,10 @@ const PostItem = ({ post, style, testid }) => (
       <ImageWrapper>
         <Image fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
       </ImageWrapper>
-      <PageLink to={post.fields.slug}>
+      <PageLink 
+        to={post.fields.slug} 
+        color={post.frontmatter.color}
+      >
         <TracedGlow src={post.frontmatter.thumbnail.childImageSharp.fluid.tracedSVG} alt={post.frontmatter.title} />
         <Overlay style={{ backgroundColor: post.frontmatter.color }} />
         <TextWrapper>
