@@ -25,7 +25,7 @@ const Title = styled.h1`
   font-size: 4.25rem;
   span {
     display: block;
-    line-height: 0.9;
+    line-height: 0.95;
   }
 `
 
