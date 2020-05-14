@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 
 const MenuContainer = styled.div`
   ${tw`flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-6`}
-  /* background: linear-gradient(to bottom, rgba(0,0,0,0.25), transparent); */
   box-sizing: border-box;
 `
 
@@ -33,7 +32,7 @@ const MenuItem = styled.li`
     ${tw`font-normal no-underline border-none`}
     color: rgba(0,0,0,0.7);
     &:hover {
-      color: #EA2021;
+      color: ${props => props.theme.brand.accent};
     }
   }
   &:last-child {
@@ -44,7 +43,7 @@ const MenuItem = styled.li`
 const Navbar = styled.div`
   ${tw`absolute`}
   right: 2.5rem;
-  @media (max-width: 420px) {
+  @media screen and (max-width: 420px) {
     right: 0;
   }
 `
@@ -80,7 +79,7 @@ const MenuPanel = styled.div`
     font-size: 12vw;
     width: max-content;
     &:first-child {
-      margin-top: 2rem;
+      margin-top: 4rem;
     }
     a {
       ${tw`font-bold`}
@@ -190,14 +189,17 @@ class Nav extends React.Component {
   isPanelVisible = () => (this.state.panel ? 'active' : '')
 
   render() {
-    const { logo, mobile, color, theme } = this.props
+    const { mobile, theme, color } = this.props
     return (
       <StaticQuery query={menuQuery}
         render={data => (
           <Wrapper className='nav-wrapper'>
             <Fade top delay={250}>
               <MenuContainer>
-                <LogoWrapper to={data.site.siteMetadata.menuLinks[0].link}>
+                <LogoWrapper 
+                  to={data.site.siteMetadata.menuLinks[0].link} 
+                  color={theme.colors.accent}
+                >
                     <Image className='logo-image' fluid={data.logo.childImageSharp.fluid} />
                 </LogoWrapper>
                 { mobile ?
@@ -205,20 +207,12 @@ class Nav extends React.Component {
                   :
                   <Navbar>
                     <Menu className='menu'>
-                      {data.site.siteMetadata.menuLinks.map((item) => {
-                        if (item.external) {
-                          return (
-                            <MenuItem className='menu-item external' key={item.name}>
-                              <a href={item.link} target='_blank' rel='noopener noreferrer'>{item.name}</a>
-                            </MenuItem>
-                          )
-                        }
-                        return (
-                          <MenuItem className='menu-item' key={item.name}>
+                      {data.site.siteMetadata.menuLinks.map((item) => (
+                          <MenuItem key={item.name}>
                             <PageLink color={color} to={item.link}>{item.name}</PageLink>
                           </MenuItem>
                         )
-                      })}
+                      )}
                     </Menu>
                   </Navbar>
                 }
@@ -226,20 +220,12 @@ class Nav extends React.Component {
             </Fade>
             { mobile ?
               <MenuPanel className={`${this.isPanelVisible()}`} theme={theme}>
-                {data.site.siteMetadata.menuLinks.map((item) => {
-                  if (item.external) {
-                    return (
-                      <MenuItem className='menu-item external' key={item.name}>
-                        <a href={item.link} target='_blank' rel='noopener noreferrer'>{item.name}</a>
-                      </MenuItem>
-                    )
-                  }
-                  return (
-                    <MenuItem className='menu-item' key={item.name}>
-                      <PageLink to={item.link}>{item.name}</PageLink>
+                {data.site.siteMetadata.menuLinks.map((item) => (
+                    <MenuItem key={item.name}>
+                      <PageLink color={color} to={item.link}>{item.name}</PageLink>
                     </MenuItem>
                   )
-                })}
+                )}
               </MenuPanel> : null }
           </Wrapper>
         )}

@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Parallax } from 'react-spring/renderprops-addons'
-import styled from 'styled-components'
-import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import tw from 'tailwind.macro'
 // Componemts
 import Footer from './Footer'
@@ -45,7 +44,11 @@ const Layout = ({ pages, navLogo, pathname, color, customSEO, children }) => {
       {!customSEO && <SEO pathname={pathname} />}
       <GlobalStyle />
       <Wrapper>
-        <Nav logo={navLogo} mobile={mobile} color={color} theme={theme} />
+        <Nav 
+          mobile={mobile} 
+          theme={theme} 
+          color={color ? color : theme.colors.accent} 
+        />
         {children}
       </Wrapper>
       <Footer />
