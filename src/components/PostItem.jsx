@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import Image from 'gatsby-image'
 import { animated } from 'react-spring'
 import styled from 'styled-components'
@@ -55,8 +54,16 @@ const TracedGlow = styled.img`
 const TextWrapper = styled.div`
   ${tw`flex flex-col w-full h-full xs:p-10 xs:px-8 sm:p-6`}
   p {
-    ${tw`leading-normal m-0 xs:text-xl`}
+    ${tw`leading-normal m-0`}
     color: rgba(255,255,255,0.8);
+  }
+  @media screen and (min-width: 631px) and (max-width: 842px) {
+    font-size: 1.5rem;
+    padding: 1.75rem;
+  }
+  @media screen and (max-width: 561px) {
+    font-size: 1.75rem;
+    padding: 2rem;
   }
 `
 
@@ -66,6 +73,12 @@ const Title = styled.h2`
   font-size: 2.65rem;
   line-height: 1;
   text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  @media screen and (min-width: 631px) and (max-width: 842px) {
+    font-size: 3.25rem;
+  }
+  @media screen and (max-width: 561px) {
+    font-size: 4rem;
+  }
 `
 
 const PostItem = ({ post, style, testid }) => (
