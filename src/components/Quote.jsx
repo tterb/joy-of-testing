@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import { Parallax } from 'react-spring/renderprops-addons'
@@ -28,25 +28,20 @@ const QuoteAuthor = styled.h3`
 
 const Quote = () => {
 
-  const [state, setState] = useState({ quote: '' })
-  const getQuote = () => {
+  const [quote, setQuote] = useState('')
+
+  useEffect(() => {
+    let isSubscribed = true
     let randomIndex = Math.floor(Math.random() * QuoteData.length);
-    if (isMobile()) {
-      while (QuoteData[randomIndex].length > 75)
-        randomIndex = Math.floor(Math.random() * QuoteData.length)
-    }
-    setState({
-      quote: QuoteData[randomIndex],
-    })
-  }
-  if (!state.quote) {
-    getQuote()
-  }
+    setQuote(QuoteData[randomIndex])
+    return () => isSubscribed = false
+  }, []);
+
   return (
     <Wrapper>
       <Parallax.Layer factor={0.25} offset={0.0} speed={-0.5}>
         <QuoteText>
-          &quot;{state.quote}&quot;
+          &quot;{quote}&quot;
         </QuoteText>
         <AuthorWrapper>
           <QuoteAuthor>~ Bob Ross</QuoteAuthor>
