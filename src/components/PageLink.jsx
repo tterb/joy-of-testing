@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import AniLink from 'gatsby-plugin-transition-link/AniLink'
-import { lighten } from 'polished'
 
 const PageLink = (props) => {
   const label = props.label ? props.label : props.children

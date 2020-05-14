@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import { darken } from 'polished'
 // Icons
 import { Github, Gatsby } from '@styled-icons/remix-fill'
 // Config
@@ -78,7 +77,5 @@ const Footer = () => (
     </Wrapper>
   </Container>
 );
-
-  {/* <Subtext>Powered by <a href='#'>Gatsby</a></Subtext> */}
 
 export default Footer

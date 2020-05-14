@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import CanvasDraw from 'react-canvas-draw'
@@ -31,7 +30,7 @@ const Title = styled.h1`
 
 const Canvas = styled(CanvasDraw)`
   ${tw`absolute pin-t`}
-  width: 100vw !important; */
+  width: 100vw !important;
   height: 50vh;
 `
 
