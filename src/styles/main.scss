@@ -2,4 +2,18 @@
 
 @tailwind components;
 
+html,
+body {
+  @apply m-0 p-0;
+}
+
+body {
+  @apply font-sans;
+}
+
+#___gatsby, 
+#___gatsby > div {
+  @apply h-full;
+}
+
 @tailwind utilities;
