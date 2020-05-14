@@ -109,11 +109,11 @@
     "webpack": "^4.4.0"
   },
   "repository": {
-    "url": "https://github.com/tterb/gatsby-portfolio",
+    "url": "https://github.com/tterb/joy-of-testing",
     "type": "git"
   },
   "bugs": {
-    "url": "https://github.com/tterb/gatsby-portfolio/issues"
+    "url": "https://github.com/tterb/joy-of-testing/issues"
   },
   "standard": {
     "parser": "babel-eslint"
