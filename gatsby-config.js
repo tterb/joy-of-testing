@@ -1,6 +1,6 @@
 const config = require(`./config/website`)
+const tailwindConfig = require(`./tailwind.js`)
 const dotenv = require(`dotenv`)
-
 
 const pathPrefix = config.pathPrefix === `/` ? `` : config.pathPrefix
 
@@ -20,11 +20,11 @@ module.exports = {
   /* General Information */
   pathPrefix: config.pathPrefix,
   siteMetadata: {
-    title: `Bob Ross`,
-    description: `Bob Ross`,
+    title: config.siteTitle,
+    description: config.siteDescription,
     siteUrl: config.siteUrl + pathPrefix,
-    author: `Brett Stevenson`,
-    keywords: [`bob-ross`, `paintings`, `disqus`],
+    author: config.author.name,
+    keywords: config.siteKeywords,
     menuLinks: [
       {
         name: `Home`,
@@ -129,6 +129,7 @@ module.exports = {
           require(`postcss-preset-env`)({
             stage: 3,  // More info about stages: https://cssdb.org/#staging-process
           }),
+          require(`tailwindcss`)(tailwindConfig),
         ],
       },
     },
@@ -138,7 +139,7 @@ module.exports = {
         // printRejected: true,
         // develop: true, // Enable while using `gatsby develop`
         tailwind: true, // Enable tailwindcss support
-      }
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
@@ -170,9 +171,9 @@ module.exports = {
         short_name: config.siteTitleShort,
         description: config.siteDescription,
         start_url: config.pathPrefix,
-        background_color: config.backgroundColor,
-        theme_color: config.themeColor,
-        display: `standalone`,
+        background_color: config.colors.background,
+        theme_color: config.colors.accent,
+        display: 'minimal-ui',
         icon: `static/favicon.png`,
       },
     },

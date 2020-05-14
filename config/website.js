@@ -22,4 +22,9 @@ module.exports = {
     disqus: `https://disqus.com/home/forum/happy-little-trees`,
     gatsby: `https://gatsbyjs.com`,
   },
+  colors: {
+    background: `#F8FAFC`,
+    link_color: `#15BBC5`,
+    accent: `#F2433B`,
+  },
 }

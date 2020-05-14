@@ -32,7 +32,7 @@ const MenuItem = styled.li`
     ${tw`font-normal no-underline border-none`}
     color: rgba(0,0,0,0.7);
     &:hover {
-      color: ${props => props.theme.brand.accent};
+      color: ${props => props.theme.colors.accent};
     }
   }
   &:last-child {
