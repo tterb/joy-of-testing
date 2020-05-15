@@ -56,7 +56,9 @@ class Canvas extends React.Component {
   }
 
   componentWillMount() {
-    document.addEventListener('keydown', this.onKeyPressed.bind(this));
+    if (typeof window !== 'undefined') {
+      document.addEventListener('keydown', this.onKeyPressed.bind(this));
+    }
   }
 
   componentWillUnmount() {
