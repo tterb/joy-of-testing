@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import CanvasDraw from 'react-canvas-draw'
+// import CanvasDraw from 'react-canvas-draw'
+import Canvas from './Canvas'
 
 
 const Wrapper = styled.div`
@@ -28,11 +29,11 @@ const Title = styled.h1`
   }
 `
 
-const Canvas = styled(CanvasDraw)`
-  ${tw`absolute pin-t`}
-  width: 100vw !important;
-  height: 50vh;
-`
+// const Canvas = styled(CanvasDraw)`
+//   ${tw`absolute pin-t`}
+//   width: 100vw !important;
+//   height: 50vh;
+// `
 
 const Dot = styled.span`
   ${tw`relative rounded-full pointer z-999`}
@@ -97,15 +98,12 @@ class BlogHero extends React.Component {
     return (
       <Wrapper>
         <Header>
-          {this.state.canvasVisible ?
-            <Canvas
-              brushColor={`${this.state.brushColor}b0`}
-              canvasWidth={this.state.viewWidth}
-              canvasHeight={this.state.viewHeight/2}
-              lazyRadius={10}
-              hideGrid={true}
-            /> : null
-          }
+          <Canvas
+            brushColor={`${this.state.brushColor}d0`}
+            canvasWidth={this.state.viewWidth}
+            canvasHeight={this.state.viewHeight/2}
+            isActive={this.state.canvasVisible}
+          />
           <Title>
             <span>The Joy</span>
             <span>of Testing
