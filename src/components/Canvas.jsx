@@ -56,9 +56,8 @@ class Canvas extends React.Component {
   }
 
   componentWillMount() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined')
       document.addEventListener('keydown', this.onKeyPressed.bind(this));
-    }
   }
 
   componentWillUnmount() {
@@ -83,10 +82,12 @@ class Canvas extends React.Component {
   }
 
   handleSave() {
-    localStorage.setItem(
-      'JOTSavedCanvas',
-      this.canvas.getSaveData()
-    )
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(
+        'JOTSavedCanvas',
+        this.canvas.getSaveData()
+      )
+    }
   }
 
   toggleErase() {
@@ -96,7 +97,8 @@ class Canvas extends React.Component {
   }
 
   render() {
-    const savedCanvas = localStorage.getItem('JOTSavedCanvas')
+    if (typeof window !== 'undefined')
+    const savedCanvas = typeof window !== 'undefined' ? localStorage.getItem('JOTSavedCanvas') : undefined
     let brushColor = this.state.isErasing ? '#FFFFFF' : this.props.brushColor
     return (
         <>
