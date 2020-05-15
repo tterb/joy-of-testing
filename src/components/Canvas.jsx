@@ -97,8 +97,7 @@ class Canvas extends React.Component {
   }
 
   render() {
-    if (typeof window !== 'undefined')
-    const savedCanvas = typeof window !== 'undefined' ? localStorage.getItem('JOTSavedCanvas') : undefined
+    const savedCanvas = (typeof window !== 'undefined' ? localStorage.getItem('JOTSavedCanvas') : undefined)
     let brushColor = this.state.isErasing ? '#FFFFFF' : this.props.brushColor
     return (
         <>
