@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import CanvasDraw from 'react-canvas-draw'
 // Icons
-import Eraser from '../images/eraser2.svg'
-import Save from '../images/save2.svg'
-import Trash from '../images/trash2.svg'
+import Eraser from '../images/eraser.svg'
+import Save from '../images/save.svg'
+import Trash from '../images/trash.svg'
 
 const CanvasArea = styled(CanvasDraw)`
   ${tw`absolute pin-t`}
