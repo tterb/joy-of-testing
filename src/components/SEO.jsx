@@ -26,7 +26,7 @@ const Head = props => {
     description = node.frontmatter.description
     image = `${homeURL}${postImage}`
   } else {
-    title = site.siteTitleAlt
+    title = site.siteTitle
     description = site.siteDescription
     image = `${homeURL}${site.siteLogo}`
   }
