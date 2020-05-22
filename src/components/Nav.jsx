@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import tw from 'tailwind.macro'
 // Components
 import PageLink from './PageLink'
+import ThemeSwitcher from './ThemeSwitcher'
 
 
 const Wrapper = styled.div`
@@ -15,7 +16,7 @@ const Wrapper = styled.div`
 `
 
 const MenuContainer = styled.div`
-  ${tw`flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-6`}
+  ${tw`flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-10`}
   box-sizing: border-box;
 `
 
@@ -32,7 +33,7 @@ const MenuItem = styled.li`
     ${tw`font-normal no-underline border-none`}
     color: rgba(0,0,0,0.7);
     &:hover {
-      color: ${props => props.theme.colors.accent};
+      color: ${props => props.theme.accent} !important;
     }
   }
   &:last-child {
@@ -42,7 +43,7 @@ const MenuItem = styled.li`
 
 const Navbar = styled.div`
   ${tw`absolute`}
-  right: 2.5rem;
+  right: 0.5rem;
   @media screen and (max-width: 420px) {
     right: 0;
   }
@@ -86,7 +87,7 @@ const MenuPanel = styled.div`
       color: rgba(0,0,0,0.75);
       &::before {
         ${tw`absolute w-0`}
-        background: ${props => props.theme.colors.accent};
+        background: ${props => props.theme.accent};
         content: '';
         height: 8px;
         top: 50%;
@@ -156,7 +157,7 @@ const LogoWrapper = styled(PageLink)`
   ${tw`relative w-1/5`}
   min-width: 9.25rem;
   max-width: 11.25rem;
-  top: -0.5rem;
+  top: -1.75rem;
 `
 
 const MenuButton = ({ status, onClick }) => (
@@ -166,7 +167,6 @@ const MenuButton = ({ status, onClick }) => (
     <Line className='half end' />
   </Button>
 )
-
 MenuButton.propTypes = {
   status: PropTypes.string,
   onClick: PropTypes.func.isRequired,
@@ -176,20 +176,20 @@ MenuButton.propTypes = {
 class Nav extends React.Component {
 
   state = {
-    panel: false,
+    panelVisible: false,
   }
 
-  togglePanel = () => {
-    if (this.state.panel)
-      this.setState({ panel: false })
+  toggleMenuPanel = () => {
+    if (this.state.panelVisible)
+      this.setState({ panelVisible: false })
     else
-      this.setState({ panel: true })
+      this.setState({ panelVisible: true })
   }
 
-  isPanelVisible = () => (this.state.panel ? 'active' : '')
+  isPanelVisible = () => (this.state.panelVisible ? 'active' : '')
 
   render() {
-    const { mobile, theme, color } = this.props
+    const { color, isMobile, theme, themeString, themeToggler, hasThemeSwitch } = this.props
     return (
       <StaticQuery query={menuQuery}
         render={data => (
@@ -198,13 +198,13 @@ class Nav extends React.Component {
               <MenuContainer>
                 <LogoWrapper 
                   to={data.site.siteMetadata.menuLinks[0].link} 
-                  color={theme.colors.accent}
+                  color={theme.accent}
                 >
                     <Image className='logo-image' fluid={data.logo.childImageSharp.fluid} />
                 </LogoWrapper>
-                { mobile ?
-                  <MenuButton status={this.isPanelVisible()} onClick={this.togglePanel} />
-                  :
+                { isMobile ? (
+                  <MenuButton status={this.isPanelVisible()} onClick={this.toggleMenuPanel} />
+                ) : (
                   <Navbar>
                     <Menu className='menu'>
                       {data.site.siteMetadata.menuLinks.map((item) => (
@@ -213,12 +213,15 @@ class Nav extends React.Component {
                           </MenuItem>
                         )
                       )}
+                      {hasThemeSwitch ? (
+                        <ThemeSwitcher theme={theme} themeString={themeString} themeToggler={themeToggler} />
+                      ) : null}
                     </Menu>
                   </Navbar>
-                }
+                )}
               </MenuContainer>
             </Fade>
-            { mobile ?
+            { isMobile ? (
               <MenuPanel className={`${this.isPanelVisible()}`} theme={theme}>
                 {data.site.siteMetadata.menuLinks.map((item) => (
                     <MenuItem key={item.name}>
@@ -226,7 +229,8 @@ class Nav extends React.Component {
                     </MenuItem>
                   )
                 )}
-              </MenuPanel> : null }
+              </MenuPanel>
+            ) : null }
           </Wrapper>
         )}
       />
@@ -236,17 +240,18 @@ class Nav extends React.Component {
 
 Nav.defaultProps = {
   logo: true,
-  mobile: false,
+  isMobile: false,
 }
 Nav.propTypes = {
   logo: PropTypes.bool,
   color: PropTypes.string,
-  mobile: PropTypes.bool,
+  isMobile: PropTypes.bool,
+  hasThemeSwitch: PropTypes.bool,
   theme: PropTypes.shape({
-    colors: PropTypes.shape({
-      accent: PropTypes.string,
-    }),
+    accent: PropTypes.string,
   }),
+  themeString: PropTypes.string,
+  themeToggler: PropTypes.func,
 }
 
 export default Nav

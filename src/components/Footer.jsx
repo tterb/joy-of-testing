@@ -10,6 +10,7 @@ import site from '../../config/website'
 const Container = styled.div`
   ${tw`sticky grid w-full pin-l pin-b py-8 pb-7 z-0`}
   background: #2D2B30;
+  background: ${({ theme }) => `${theme.footer}`}
   place-items: center;
 `
 
@@ -56,8 +57,8 @@ const Disqus = () => (
   </svg>
 )
 
-const Footer = () => (
-  <Container>
+const Footer = ({ theme }) => (
+  <Container theme={theme}>
     <Wrapper>
       <TextWrapper>
         <Title>The Joy of Testing</Title>
