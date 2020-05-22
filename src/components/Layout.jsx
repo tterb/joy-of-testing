@@ -1,72 +1,66 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Parallax } from 'react-spring/renderprops-addons'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import tw from 'tailwind.macro'
 // Componemts
 import Footer from './Footer'
 import Nav from './Nav'
 import SEO from './SEO'
 // Hooks
-import { isMobile } from '../hooks/WindowDimensions'
-// Theme
-import theme from '../../config/theme'
+import { isMobileViewport } from '../hooks/windowDimensions'
 // Styles
-import styles from '../styles/styles'
+import { lightTheme, darkTheme } from '../styles/themes'
+import { GlobalStyle } from '../styles/global'
 import '../styles/main.scss'
 // Typefaces
 import 'typeface-lato'
 import 'typeface-lora'
 
-const GlobalStyle = createGlobalStyle`
-  ${styles}
-`
 
 const Wrapper = styled.div`
   ${tw`relative w-full z-1`}
-  background: white;
   min-height: 100vh;
   box-shadow: 0 6px 15px -4px rgba(0,0,0,0.65);
 `
 
-const Layout = ({ pages, navLogo, pathname, color, customSEO, children }) => {
-  if (typeof window !== 'undefined') {
-    require('smooth-scroll')('a[href*="#"]', {
-      speed: 600,
-      easing: 'easeInOutCubic',
-      updateURL: false,
-    })
-  }
-  const mobile = isMobile()
+const Layout = (props) => {
+	const { pathname, color, customSEO, themeString, themeToggler, hasThemeSwitch, children } = props
+	const isMobile = isMobileViewport()
+	const theme = (themeString === 'dark') ? darkTheme : lightTheme
 
-  return (
-    <ThemeProvider theme={theme}>
-      {!customSEO && <SEO pathname={pathname} />}
-      <GlobalStyle />
-      <Wrapper>
-        <Nav 
-          mobile={mobile} 
-          theme={theme} 
-          color={color ? color : theme.colors.accent} 
-        />
-        {children}
-      </Wrapper>
-      <Footer />
-    </ThemeProvider>
-  )
+	return (
+		<ThemeProvider theme={theme}>
+			<GlobalStyle theme={theme} color={color} />
+			{!customSEO && <SEO pathname={pathname} />}
+			<Wrapper className='layout-wrapper'>
+				<Nav
+					color={color || theme.accent}
+					theme={theme}
+					themeToggler={themeToggler}
+					hasThemeSwitch={hasThemeSwitch}
+					isMobile={isMobile}
+					{...props}
+				/>
+				{children}
+			</Wrapper>
+			<Footer theme={theme} />
+		</ThemeProvider>
+	)
 }
 Layout.propTypes = {
-  navLogo: PropTypes.any,
-  customSEO: PropTypes.bool,
-  color: PropTypes.string,
-  pages: PropTypes.number,
-  pathname: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+	children: PropTypes.node.isRequired,
+	color: PropTypes.string,
+	customSEO: PropTypes.bool,
+	hasThemeSwitch: PropTypes.bool,
+	pathname: PropTypes.string.isRequired,
+	themeString: PropTypes.string.isRequired,
+	themeToggler: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired,
 }
 Layout.defaultProps = {
-  customSEO: false,
-  title: 'Bob Ross',
+	customSEO: false,
+	hasThemeSwitch: false,
+	title: 'Bob Ross',
 }
 
 export default Layout

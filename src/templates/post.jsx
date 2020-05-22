@@ -3,19 +3,21 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Image from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Disqus, CommentCount } from '../../plugins/gatsby-plugin-disqus'
 import { animated, useSpring, config } from 'react-spring'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-import { darken, rgba } from 'polished'
+import { darken } from 'polished'
+// Hooks
+import useDarkMode from '../hooks/useDarkMode'
 // Components
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import SEO from '../components/SEO'
 import PostHero from '../components/PostHero'
 import PostImage from '../components/PostImage'
-// Config
-import site from '../../config/website'
+// Plugins
+import { Disqus, CommentCount } from '../../plugins/gatsby-plugin-disqus'
+
 
 const HeaderContent = styled(Wrapper)`
   ${tw`absolute w-9/10 lg:w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-4 z-5`}
@@ -34,17 +36,13 @@ const Title = styled(animated.h1)`
 const PostDetail = styled(animated.div)`
   ${tw`flex flex-row flex-wrap items-center justify-start mx-0 mt-2 mb-1 pt-2 pl-2`}
   span::after {
-    position: relative;
+    ${tw`relative text-xs p-0 px-1`}
     content: '•';
     color: ${props => props.color};
-    font-size: 0.7rem;
     top: -2px;
-    padding: 0 4px;
   }
-  span:last-child {
-    &::after {
-      content: '';
-    }
+  span:last-child::after {
+    content: '';
   }
   .disqus-comment-count {
     ${tw`block relative text-lg md:text-xl text-right leading-normal h-full pin-t m-0`}
@@ -60,7 +58,7 @@ const PostDate = styled.span`
 `
 
 const PostBody = styled(animated.div)`
-  ${tw`m-auto mb-16`}
+  ${tw`m-auto pt-6 mb-16`}
   a {
     ${tw`no-underline`}
     color: ${props => darken(0.1, props.color)} !important;
@@ -75,8 +73,16 @@ const CommentThread = styled(Disqus)`
   ${tw`w-full mx-auto pb-8`}
 `
 
-const Post = ({ data: { mdx: node }, location }) => {
-  const post = node.frontmatter
+const Post = ({ data: { site, mdx: node }, location }, ...props) => {
+  const frontmatter = node.frontmatter
+  const siteUrl = site.siteMetadata.siteUrl
+  const [themeString, themeToggler] = useDarkMode()
+  const disqusConfig = {
+    url: `${siteUrl+location.pathname}`,
+    identifier: frontmatter.id,
+    title: frontmatter.title,
+  }
+
   const titleProps = useSpring({
     config: config.slow,
     from: { opacity: 0, transform: 'translate3d(0, -30px, 0)' },
@@ -85,26 +91,27 @@ const Post = ({ data: { mdx: node }, location }) => {
   const infoProps = useSpring({ config: config.slow, delay: 500, from: { opacity: 0 }, to: { opacity: 1 } })
   const contentProps = useSpring({ config: config.slow, delay: 1000, from: { opacity: 0 }, to: { opacity: 1 } })
 
-  let disqusConfig = {
-    url: `${site.siteUrl+location.pathname}`,
-    identifier: post.id,
-    title: post.title,
-  }
-
   return (
-    <Layout pathname={location.pathname} color={post.color} customSEO>
+    <Layout
+      pathname={location.pathname}
+      color={frontmatter.color}
+      themeString={themeString}
+      themeToggler={themeToggler}
+      hasThemeSwitch
+      customSEO
+    >
       <SEO pathname={location.pathname} node={node} article />
       <PostHero>
-        <PostImage customcolor={post.color}>
-          <Image fluid={post.cover.childImageSharp.fluid} alt={post.title} />
+        <PostImage customcolor={frontmatter.color} className='post-image'>
+          <Image fluid={frontmatter.cover.childImageSharp.fluid} alt={frontmatter.title} />
         </PostImage>
-        <HeaderContent type="text">
-          <Title data-testid="post-title" style={titleProps}>
-            {post.title}
+        <HeaderContent type='text' className='post-header'>
+          <Title data-testid='post-title' style={titleProps}>
+            {frontmatter.title}
           </Title>
-          <PostDetail color={post.color} style={infoProps}>
-            <PostDate>
-              {post.date.split(' ').map((item, i) => (
+          <PostDetail color={frontmatter.color} style={infoProps}>
+            <PostDate className='post-date'>
+              {frontmatter.date.split(' ').map((item, i) => (
                 (i !== 1) ? <strong key={i}>{item}</strong> : item
               ))}
             </PostDate>
@@ -112,28 +119,38 @@ const Post = ({ data: { mdx: node }, location }) => {
           </PostDetail>
         </HeaderContent>
       </PostHero>
-      <ContentBody type="text" className="post-content">
-        <PostBody style={contentProps} color={post.color}>
+      <ContentBody type='text' className='post-content'>
+        <PostBody style={contentProps} color={frontmatter.color}>
           <MDXRenderer>{node.body}</MDXRenderer>
         </PostBody>
-        <CommentThread config={disqusConfig} />
+        <CommentThread config={disqusConfig} theme={themeString} />
       </ContentBody>
     </Layout>
   )
 }
-
-export default Post
-
 Post.propTypes = {
   data: PropTypes.shape({
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        siteUrl: PropTypes.string.isRequired,
+      })
+    }).isRequired,
     mdx: PropTypes.object.isRequired,
   }).isRequired,
   location: PropTypes.object.isRequired,
 }
 
+export default Post
+
 export const pageQuery = graphql`
   query($slug: String!) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     mdx(fields: { slug: { eq: $slug } }) {
+      id,
       body
       excerpt
       fields {

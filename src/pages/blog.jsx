@@ -1,9 +1,11 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import { useTrail } from 'react-spring'
-import styled from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import tw from 'tailwind.macro'
+// Hooks
+import useDarkMode from '../hooks/useDarkMode'
 // Components
 import Layout from '../components/Layout'
 import PostItem from '../components/PostItem'
@@ -23,18 +25,18 @@ const ListWrapper = styled.div`
   background: #F6F8FA;
 `
 
-const Blog = ({
-  data: {
-    allMdx: { edges: post },
-  },
-  location,
-}) => {
+const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
   const trail = useTrail(post.length, {
     from: { height: '0%' },
     to: { height: '100%' },
   })
+  const [themeString, themeToggler] = useDarkMode()
   return (
-    <Layout pathname={location.pathname}>
+    <Layout
+      pathname={location.pathname}
+      themeString={themeString}
+      themeToggler={themeToggler}
+    >
       <BlogHero />
       <Wrapper>
         <ListWrapper>
