@@ -4,7 +4,7 @@ import Image from 'gatsby-image'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 // Components
-import { Container, FluidContainer } from '../components/Container'
+import { FluidContainer } from '../components/Container'
 
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const HeroImage = styled(Image)`
   }
 `
 
-const Hero = ({ factor, offset, speed, background }) => (
+const Hero = ({ background, factor, offset, speed }) => (
   <FluidContainer factor={factor} offset={offset} speed={speed}>
     <Wrapper>
       <HeroImage fluid={background.childImageSharp.fluid} alt='Painting' />
@@ -28,10 +28,10 @@ const Hero = ({ factor, offset, speed, background }) => (
   </FluidContainer>
 )
 Hero.propTypes = {
+  background: PropTypes.any.isRequired,
   factor: PropTypes.number.isRequired,
   offset: PropTypes.number.isRequired,
   speed: PropTypes.number.isRequired,
-  background: PropTypes.any.isRequired,
 }
 Hero.defaultProps = {
   factor: 0.8,

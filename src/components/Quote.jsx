@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import { Parallax } from 'react-spring/renderprops-addons'
-// Hooks
-import { isMobile } from '../hooks/WindowDimensions'
 // Contents
 import QuoteData from '../contents/quotes.yaml'
 
@@ -32,10 +30,10 @@ const Quote = () => {
 
   useEffect(() => {
     let isSubscribed = true
-    let randomIndex = Math.floor(Math.random() * QuoteData.length);
+    let randomIndex = Math.floor(Math.random() * QuoteData.length)
     setQuote(QuoteData[randomIndex])
     return () => isSubscribed = false
-  }, []);
+  }, [])
 
   return (
     <Wrapper>
