@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 
 const Base = styled.div`
 	${tw`absolute relative flex items-center justify-between rounded-full p-2 cursor-pointer z-0`}
-	background: ${props => `${rgba(props.color, 0.05)}`};
+	background: ${props => `${rgba(props.color, 0.15)}`};
 	width: 3.75rem;
 	height: 1.875rem;
 	box-shadow: inset 0px -1px 6px -2px rgba(0,0,0,0.2);
