@@ -10,13 +10,14 @@ import { darken } from 'polished'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
 // Components
+import CommentThread from '../components/CommentThread'
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import SEO from '../components/SEO'
 import PostHero from '../components/PostHero'
 import PostImage from '../components/PostImage'
 // Plugins
-import { Disqus, CommentCount } from '../../plugins/gatsby-plugin-disqus'
+import { CommentCount } from '../../plugins/gatsby-plugin-disqus'
 
 
 const HeaderContent = styled(Wrapper)`
@@ -67,10 +68,6 @@ const PostBody = styled(animated.div)`
       color: ${props => darken(0.25, props.color)} !important;
     }
   }
-`
-
-const CommentThread = styled(Disqus)`
-  ${tw`w-full mx-auto pb-8`}
 `
 
 const Post = ({ data: { site, mdx: node }, location }, ...props) => {
