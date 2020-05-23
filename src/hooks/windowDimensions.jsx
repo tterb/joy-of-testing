@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+
 function getWindowDimensions() {
   if (typeof window !== 'undefined') {
     const { innerWidth: width, innerHeight: height } = window
@@ -7,14 +8,6 @@ function getWindowDimensions() {
   }
   // Return non-descript default values
   return { width: 600, height: 1000 }
-}
-
-function getMobileState() {
-  if (typeof window !== 'undefined') {
-    const { width, height } = getWindowDimensions()
-    return (width <= 500)
-  }
-  return false
 }
 
 export default function useWindowDimensions() {
@@ -33,7 +26,15 @@ export default function useWindowDimensions() {
 }
 
 
-export function isMobile() {
+function getMobileState() {
+  if (typeof window !== 'undefined') {
+    const { width, height } = getWindowDimensions()
+    return (width <= 500)
+  }
+  return false
+}
+
+export function isMobileViewport() {
   const [mobileState, setMobileState] = useState(getMobileState())
 
   useEffect(() => {
