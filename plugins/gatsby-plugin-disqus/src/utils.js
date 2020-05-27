@@ -47,8 +47,8 @@ export function isReactElement(element) {
 
 export function shallowComparison(currentProps, nextProps) {
     // Perform a comparison of all props, excluding React Elements, to prevent unnecessary updates
-    var propNames = new Set(Object.keys(currentProps).concat(Object.keys(nextProps)))
-    var changes = [].concat(...propNames).filter((name) => (
+    const propNames = new Set(Object.keys(currentProps).concat(Object.keys(nextProps)))
+    const changes = [].concat(...propNames).filter((name) => (
         currentProps[name] !== nextProps[name] && !isReactElement(currentProps[name])
     ))
     return changes.length !== 0
