@@ -102,9 +102,11 @@ class Canvas extends React.Component {
     return (
         <>
           <CanvasArea
+            className='canvas'
             ref={canvas => (this.canvas = canvas)}
             brushColor={brushColor}
             brushRadius={this.state.brushRadius}
+            catenaryColor={'#000'}
             lazyRadius={6}
             hideGrid={true}
             loadTimeOffset={0}

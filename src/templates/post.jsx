@@ -22,12 +22,10 @@ import { CommentCount } from '../../plugins/gatsby-plugin-disqus'
 
 const HeaderContent = styled(Wrapper)`
   ${tw`absolute w-9/10 lg:w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-4 z-5`}
-  color: rgba(0,0,0,0.8);
 `
 
 const ContentBody = styled(Wrapper)`
   ${tw`w-9/10 lg:w-4/5 mx-auto pb-12`}
-  color: rgba(0,0,0,0.75);
 `
 
 const Title = styled(animated.h1)`
@@ -76,7 +74,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
   const [themeString, themeToggler] = useDarkMode()
   const disqusConfig = {
     url: `${siteUrl+location.pathname}`,
-    identifier: frontmatter.id,
+    identifier: node.id,
     title: frontmatter.title,
   }
 

@@ -9,7 +9,7 @@ import QuoteData from '../contents/quotes.yaml'
 const Wrapper = styled.div`
   ${tw`flex flex-col items-center justify-center font-serif font-hairline h-full mx-auto pt-0 pb-8`}
   color: rgba(0,0,0,0.7);
-  margin-top: -15rem;
+  margin-top: -16rem;
 `
 
 const QuoteText = styled.h2`
@@ -36,7 +36,7 @@ const Quote = () => {
   }, [])
 
   return (
-    <Wrapper>
+    <Wrapper className='quote-wrapper'>
       <Parallax.Layer factor={0.25} offset={0.0} speed={-0.5}>
         <QuoteText>
           &quot;{quote}&quot;

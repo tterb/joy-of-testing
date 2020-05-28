@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useTrail } from 'react-spring'
-import styled, { ThemeProvider } from 'styled-components'
+import styled from 'styled-components'
 import tw from 'tailwind.macro'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
@@ -22,7 +22,6 @@ const ListWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-gap: 2px;
-  background: #F6F8FA;
 `
 
 const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
@@ -39,7 +38,7 @@ const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
     >
       <BlogHero />
       <Wrapper>
-        <ListWrapper>
+        <ListWrapper className='blog-wrapper'>
           {trail.map((style, index) => (
             <PostItem
               testid={`postItem-${index}`}

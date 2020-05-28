@@ -29,7 +29,7 @@ const Index = ({ location, pages }) => {
           speed={0.4}
         />
         <Section
-          background={'linear-gradient(to bottom, #fffdff 60%, transparent)'}
+          className='quote-section'
           factor={1.2}
           offset={0.0}
           speed={0.6}

@@ -41,6 +41,7 @@ const Dot = styled.span`
   content: '';
   width: 14px;
   height: 14px;
+  margin-left: 0.125rem;
 `
 
 class BlogHero extends React.Component {
@@ -104,7 +105,7 @@ class BlogHero extends React.Component {
             canvasHeight={this.state.viewHeight/2}
             isActive={this.state.canvasVisible}
           />
-          <Title>
+          <Title className='blog-title'>
             <span>The Joy</span>
             <span>of Testing
               <Dot

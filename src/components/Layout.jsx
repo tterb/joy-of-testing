@@ -32,7 +32,7 @@ const Layout = (props) => {
 		<ThemeProvider theme={theme}>
 			<GlobalStyle theme={theme} color={color} />
 			{!customSEO && <SEO pathname={pathname} />}
-			<Wrapper className='layout-wrapper'>
+			<Wrapper id='page-layout' className='layout-wrapper'>
 				<Nav
 					color={color || theme.accent}
 					theme={theme}
@@ -59,7 +59,7 @@ Layout.propTypes = {
 }
 Layout.defaultProps = {
 	customSEO: false,
-	hasThemeSwitch: false,
+	hasThemeSwitch: true,
 	title: 'Bob Ross',
 }
 

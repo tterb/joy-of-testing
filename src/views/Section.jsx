@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Image from 'gatsby-image'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 // Components
@@ -15,9 +14,9 @@ const Wrapper = styled.div`
   padding: 2rem 12%;
 `
 
-const Section = ({ factor, offset, speed, width, background, children }) => (
+const Section = ({ factor, offset, speed, width, background, className, children }) => (
   <FluidContainer factor={factor} offset={offset} speed={speed}>
-    <Wrapper background={background} width={width}>
+    <Wrapper className={className} background={background} width={width}>
       { children }
     </Wrapper>
   </FluidContainer>
@@ -28,6 +27,7 @@ Section.propTypes = {
   offset: PropTypes.number.isRequired,
   speed: PropTypes.number.isRequired,
   children: PropTypes.any.isRequired,
+  className: PropTypes.string,
 }
 Section.defaultProps = {
   factor: 1.2,
