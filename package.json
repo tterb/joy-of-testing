@@ -3,7 +3,7 @@
   "description": "A website for testing and experimenting with published data",
   "version": "1.0.0",
   "author": "Brett Stevenson <bstevensondev@gmail.com> (https://brettstevenson.io)",
-  "homepage": "https://joy-of-testing.netlify.com",
+  "homepage": "https://joyoftesting.com",
   "license": "MIT",
   "scripts": {
     "build": "yarn build-plugin && gatsby build",
