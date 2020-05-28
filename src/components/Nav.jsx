@@ -11,27 +11,24 @@ import ThemeSwitcher from './ThemeSwitcher'
 
 
 const Wrapper = styled.div`
-  ${tw`relative block font-title h-0 pin-t pin-x z-999`}
+  ${tw`relative block font-title h-0 pin-t pin-x z-50`}
   transform: translate3D(0, 0, 0);
 `
 
 const MenuContainer = styled.div`
-  ${tw`flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-10`}
+  ${tw`flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-10 z-999`}
   box-sizing: border-box;
 `
 
 const Menu = styled.ul`
-  ${tw`flex relative w-full font-title text-right list-reset m-0 md:mr-4 lg:mr-8`}
+  ${tw`flex relative w-full font-title text-right list-reset m-0 md:mr-4 lg:mr-8 z-999`}
   background: transparent;
-  z-index: 999999;
 `
 
 const MenuItem = styled.li`
-  ${tw`inline-block text-xl cursor-pointer py-0 px-3`}
-  z-index: 999999;
+  ${tw`inline-block text-xl cursor-pointer py-0 px-3 z-999`}
   a {
     ${tw`font-normal no-underline border-none`}
-    color: rgba(0,0,0,0.7);
     &:hover {
       color: ${props => props.theme.accent} !important;
     }
