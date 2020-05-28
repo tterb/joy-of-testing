@@ -12,19 +12,30 @@ const DisqusThread = styled(Disqus)`
 
 export default function CommentThread(props) {
 
-	const [toggleTheme, forceThemeToggle] = useState(false);
+  const [themeState, toggleTheme] = useState(false);
+
 	const transitionEnd = useCallback((evt) => {
-		const { target, propertyName } = evt;
-		if (target === window.document.body && propertyName === 'color')
-			forceThemeToggle(o => !o);
+    if (evt.target === window.document.body && evt.propertyName === 'background-color')
+      toggleTheme(mode => !mode)
 	}, [])
 
 	useEffect(() => {
-    window.document.body.addEventListener('transitionend', transitionEnd)
-    return () => window.document.body.removeEventListener('transitionend', transitionEnd)
-  }, [transitionEnd])
+		window.document.body.addEventListener('transitionend', transitionEnd)
+		return () => window.document.body.removeEventListener('transitionend', transitionEnd)
+	}, [transitionEnd])
 
 	return (
-		<DisqusThread config={props.config} toggleTheme={toggleTheme} />
+    <DisqusThread
+      config={props.config}
+      theme={themeState.toString()}
+    />
 	)
+}
+CommentThread.propTypes = {
+	config: PropTypes.shape({
+		url: PropTypes.string.isRequired,
+		identifier: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+  }).isRequired,
+  theme: PropTypes.string,
 }
