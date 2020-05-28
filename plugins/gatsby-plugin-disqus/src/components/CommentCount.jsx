@@ -13,7 +13,17 @@ export default class CommentCount extends React.Component {
     constructor(props) {
         super(props)
         this.shortname = (GATSBY_DISQUS_SHORTNAME && GATSBY_DISQUS_SHORTNAME.length) ? GATSBY_DISQUS_SHORTNAME : ''
-        this.embedUrl = (GATSBY_DISQUS_EMBED_URL && GATSBY_DISQUS_EMBED_URL.length) ? GATSBY_DISQUS_EMBED_URL : `https://${this.shortname}.disqus.com/embed.js`
+        this.countUrl = `https://${this.shortname}.disqus.com/count.js`
+
+        if (props.config) {
+            this.config = props.config
+        } else {
+            this.config = {
+                identifier: props.identifier,
+                url: props.url,
+                title: props.title,
+            }
+        }
     }
 
     componentDidMount() {
@@ -35,7 +45,7 @@ export default class CommentCount extends React.Component {
         if (window.document.getElementById('dsq-count-scr')) {
             queueResetCount()
         } else {
-            insertScript(this.embedUrl, 'dsq-count-scr', window.document.body)
+            insertScript(this.countUrl, 'dsq-count-scr', window.document.body)
         }
     }
 
