@@ -74,12 +74,14 @@ class ThemeSwitcher extends React.Component {
 	render() {
 		return (
 			<Wrapper>
-				<Base color={this.props.theme.switchBase}>
+				<Base 
+					color={this.props.theme.switchBase}
+					onClick={this.handleClick}
+				>
 					<MoonIcon color={this.colors.moon} />
 					<SunIcon color={this.colors.sun} />
 					<Switch
 						color={this.props.theme.switchColor}
-						onClick={this.handleClick}
 						ref={temp => (this.switch = temp)}
 					/>
 				</Base>
