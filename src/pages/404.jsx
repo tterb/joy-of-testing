@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 // Hooks
@@ -24,7 +25,7 @@ const Subtitle = styled.span`
     ${tw`flex relative justify-center items-center text-4xl text-center font-normal leading-normal tracking-tight mx-auto my-0 pt-4 pb-12`}
 `
 
-const FourOhFourPage = () => {
+const FourOhFourPage = ({ location }) => {
   const [themeString, themeToggler] = useDarkMode()
   return (
     <Layout
@@ -43,6 +44,9 @@ const FourOhFourPage = () => {
       </Wrapper>
     </Layout>
   )
+}
+FourOhFourPage.propTypes = {
+  location: PropTypes.object.isRequired,
 }
 
 export default FourOhFourPage
