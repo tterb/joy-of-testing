@@ -35,9 +35,11 @@ export const GlobalStyle = createGlobalStyle`
 		background: ${({ theme }) => theme.background};
 		color: ${({ theme }) => theme.text};
 		transition: background 500ms linear, color 500ms linear;
+    h1, h2, h3, .blog-title {
+      color: ${({ theme }) => theme.title};
+    }
 		.menu li a,
     .quote-wrapper,
-    .blog-title,
     .post-date,
 		.post-header,
 		.post-content {
@@ -54,7 +56,8 @@ export const GlobalStyle = createGlobalStyle`
 			transition: all 500ms linear 0ms;
 		}
 		.post-image::after {
-			background: ${({ theme }) => `linear-gradient(to bottom, ${theme.gradient} 0%, ${theme.background} 100%), linear-gradient(to bottom right, ${theme.gradient} 85%, ${theme.background} 100%)`};
+			${'' /* background: ${({ theme }) => `linear-gradient(to bottom, ${theme.gradient} 0%, ${theme.background} 100%), linear-gradient(to bottom right, ${theme.gradient} 85%, ${theme.background} 100%)`}; */}
+      background: ${({ theme }) => `radial-gradient(75% 90% at center -5%, ${theme.gradient} 0%, ${theme.background} 100%)`};
 		}
 	}
 `

@@ -9,8 +9,7 @@ import site from '../../config/website'
 
 const Container = styled.div`
   ${tw`sticky grid w-full pin-l pin-b py-8 pb-7 z-0`}
-  background: #2D2B30;
-  background: ${({ theme }) => `${theme.footer}`}
+  background: ${({ theme }) => `${theme.footer}`};
   place-items: center;
 `
 
@@ -30,11 +29,6 @@ const Title = styled.h2`
 const Text = styled.p`
   ${tw`text-base w-full md:w-4/5 mr-auto`}
   color: rgba(255,255,255,0.75);
-`
-
-const Subtext = styled.p`
-  ${tw`text-sm`}
-  color: rgba(255,255,255,0.55);
 `
 
 const IconWrapper = styled.div`

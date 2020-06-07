@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
-// import CanvasDraw from 'react-canvas-draw'
+// Components
 import Canvas from './Canvas'
 
 
 const Wrapper = styled.div`
-  ${tw`relative flex flex-col justify-end self-start w-full mt-0 mx-auto pt-16 px-0 overflow-hidden`}
-  height: 50vh;
+  ${tw`relative flex flex-col justify-end self-start w-full mt-0 mx-auto pt-20 px-0 overflow-hidden`}
+  height: 40vh;
 `
 
 const Header = styled.div`
@@ -15,25 +15,13 @@ const Header = styled.div`
   height: 40vh;
 `
 
-const TitleWrapper = styled.div`
-  ${tw`absolute flex flex-col justify-end self-start pin-b pt-16 px-9`}
-`
-
 const Title = styled.h1`
   ${tw`absolute font-black pin-b m-6 mb-8`}
-  color: rgba(0,0,0,0.75);
   font-size: 4.25rem;
   span {
-    display: block;
-    line-height: 0.95;
+    ${tw`block leading-none`}
   }
 `
-
-// const Canvas = styled(CanvasDraw)`
-//   ${tw`absolute pin-t`}
-//   width: 100vw !important;
-//   height: 50vh;
-// `
 
 const Dot = styled.span`
   ${tw`relative rounded-full pointer z-999`}
