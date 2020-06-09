@@ -8,11 +8,15 @@ import Canvas from './Canvas'
 const Wrapper = styled.div`
   ${tw`relative flex flex-col justify-end self-start w-full mt-0 mx-auto pt-20 px-0 overflow-hidden`}
   height: 40vh;
+  @media screen and (max-height: 800px) {
+    height: 50vh;
+    min-height: 265px;
+  }
 `
 
 const Header = styled.div`
   ${tw`flex flex-col-reverse w-full`}
-  height: 40vh;
+  height: 50vh;
 `
 
 const Title = styled.h1`
@@ -92,6 +96,7 @@ class BlogHero extends React.Component {
             canvasWidth={this.state.viewWidth}
             canvasHeight={this.state.viewHeight/2}
             isActive={this.state.canvasVisible}
+            theme={this.props.theme}
           />
           <Title className='blog-title'>
             <span>The Joy</span>
