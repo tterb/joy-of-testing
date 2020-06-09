@@ -52,6 +52,10 @@ export const GlobalStyle = createGlobalStyle`
     .quote-section {
       background: ${({ theme }) => `linear-gradient(to bottom, ${theme.background} 50%, ${rgba(theme.background, 0.5)} 80%, transparent)`};
     }
+    .button-wrapper button {
+        background: ${({ theme }) => theme.background};
+        box-shadow: ${({ theme }) => theme.buttonShadow};
+    }
 		.post-image {
 			transition: all 500ms linear 0ms;
 		}

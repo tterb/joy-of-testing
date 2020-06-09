@@ -36,7 +36,7 @@ const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
       themeString={themeString}
       themeToggler={themeToggler}
     >
-      <BlogHero />
+      <BlogHero theme={themeString} />
       <Wrapper>
         <ListWrapper className='blog-wrapper'>
           {trail.map((style, index) => (

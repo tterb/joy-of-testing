@@ -3,9 +3,12 @@ import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import CanvasDraw from 'react-canvas-draw'
 // Icons
-import Eraser from '../images/eraser.svg'
-import Save from '../images/save.svg'
-import Trash from '../images/trash.svg'
+import Eraser from '../images/icons/eraser.svg'
+import Save from '../images/icons/save.svg'
+import Trash from '../images/icons/trash.svg'
+import EraserDark from '../images/icons/eraser-dark.svg'
+import SaveDark from '../images/icons/save-dark.svg'
+import TrashDark from '../images/icons/trash-dark.svg'
 
 const CanvasArea = styled(CanvasDraw)`
   ${tw`absolute pin-t`}
@@ -24,12 +27,11 @@ const ButtonWrapper = styled.div`
 
 const UiButton = styled.button`
   ${tw`w-12 h-12 rounded-full border-none mt-4 p-1 cursor-pointer`}
-  background: rgb(255,255,255);
   outline: none;
-  box-shadow: 0 2px 2px rgba(0,0,0,0.2);
-  transition: all 250ms;
+  transition: all 250ms ease-in-out;
   svg {
     ${tw`cursor-pointer opacity-50`}
+    transition: all 250ms ease-in-out;
   }
   &:hover {
     box-shadow: 0 6px 12px -2px rgba(0,0,0,0.2);
@@ -43,6 +45,7 @@ class Canvas extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      brushColor: props.brushColor,
       brushRadius: 12,
       isErasing: false,
     }
@@ -91,22 +94,24 @@ class Canvas extends React.Component {
   }
 
   toggleErase() {
+    const eraserColor = this.props.theme !== 'dark' ? '#ffffffff' : '#1d1d20ff'
     this.setState(prevState => ({
+      brushColor: prevState.isErasing ? this.props.brushColor : eraserColor,
       isErasing: !prevState.isErasing,
     }))
   }
 
   render() {
     const savedCanvas = (typeof window !== 'undefined' ? localStorage.getItem('JOTSavedCanvas') : undefined)
-    let brushColor = this.state.isErasing ? '#FFFFFF' : this.props.brushColor
+    const catenaryColor = this.props.theme !== 'dark' ? '#000' : '#fff'
     return (
         <>
           <CanvasArea
             className='canvas'
             ref={canvas => (this.canvas = canvas)}
-            brushColor={brushColor}
+            brushColor={this.state.brushColor}
             brushRadius={this.state.brushRadius}
-            catenaryColor={'#000'}
+            catenaryColor={catenaryColor}
             lazyRadius={6}
             hideGrid={true}
             loadTimeOffset={0}
@@ -118,17 +123,31 @@ class Canvas extends React.Component {
           />
           {this.props.isActive ? (
             <Interface>
-              <ButtonWrapper>
-                <UiButton onClick={this.handleSave}>
-                  <Save width='20px' height='20px' />
-                </UiButton>
-                <UiButton onClick={this.toggleErase}>
-                  <Eraser width='24px' height='24px' />
-                </UiButton>
-                <UiButton onClick={this.handleClear}>
-                  <Trash width='24px' height='24px' />
-                </UiButton>
-              </ButtonWrapper>
+              {this.props.theme !== 'dark' ? (
+                <ButtonWrapper className='button-wrapper'>
+                  <UiButton onClick={this.handleSave}>
+                    <Save width='20px' height='20px' />
+                  </UiButton>
+                  <UiButton onClick={this.toggleErase}>
+                    <Eraser width='24px' height='24px' />
+                  </UiButton>
+                  <UiButton onClick={this.handleClear}>
+                    <Trash width='24px' height='24px' />
+                  </UiButton>
+                  </ButtonWrapper>
+              ) : (
+                <ButtonWrapper className='button-wrapper'>
+                  <UiButton onClick={this.handleSave}>
+                    <SaveDark width='20px' height='20px' />
+                  </UiButton>
+                  <UiButton onClick={this.toggleErase}>
+                    <EraserDark width='24px' height='24px' />
+                  </UiButton>
+                  <UiButton onClick={this.handleClear}>
+                    <TrashDark width='24px' height='24px' />
+                  </UiButton>
+                  </ButtonWrapper>
+              )}
             </Interface>
           ) : null}
         </>

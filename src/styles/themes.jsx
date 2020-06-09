@@ -7,8 +7,9 @@ export const lightTheme = {
 	gradient: `${rgba('#FFF', 0.2)}`,
 	switchBase: `${rgba('#FFF', 0.3)}`,
 	switchColor: '#FFF',
+	accent: '#F2433B',
+	buttonShadow: `0 2px 2px ${rgba('#000', 0.2)}`,
 	footer: '#2C2B30',
-    accent: '#F2433B',
     breakpoints: {
 		xs: '400px',
 		s: '560px',
@@ -33,6 +34,7 @@ export const darkTheme = {
 	switchBase: `${rgba('#000', 0.2)}`,
 	switchColor: '#9C9BA0',
 	accent: '#F2433B',
+	buttonShadow: `0 2px 4px ${rgba('#000', 0.75)}`,
 	footer: `${darken(0.04, '#1d1d20')}`,
     breakpoints: {
 		xs: '400px',
