@@ -151,7 +151,7 @@ const Line = styled.div`
 `
 
 const LogoWrapper = styled(PageLink)`
-  ${tw`relative w-1/5`}
+  ${tw`relative`}
   min-width: 9.25rem;
   max-width: 11.25rem;
   top: -1.75rem;
