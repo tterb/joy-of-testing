@@ -44,8 +44,7 @@ const Overlay = styled.div`
 `
 
 const TracedGlow = styled.img`
-  ${tw`absolute w-full h-full pin`}
-  opacity: 0.25;
+  ${tw`absolute w-full h-full pin opacity-25`}
   object-fit: cover;
   filter: invert(100%);
   z-index: -1;
@@ -94,7 +93,7 @@ const PostItem = ({ post, style, testid }) => (
         <TracedGlow src={post.frontmatter.thumbnail.childImageSharp.fluid.tracedSVG} alt={post.frontmatter.title} />
         <Overlay style={{ backgroundColor: post.frontmatter.color }} />
         <TextWrapper>
-          <Title>{post.frontmatter.title}</Title>
+          <Title className='post-item-title'>{post.frontmatter.title}</Title>
           <p>{post.frontmatter.desc}</p>
         </TextWrapper>
       </PageLink>

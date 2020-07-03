@@ -37,6 +37,9 @@ export const GlobalStyle = createGlobalStyle`
 		transition: background 500ms linear, color 500ms linear;
     h1, h2, h3, .blog-title {
       color: ${({ theme }) => theme.title};
+      &.post-item-title {
+        color: ${rgba(#fff, 0.95)};
+      }
     }
 		.menu li a,
     .quote-wrapper,
