@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
     h1, h2, h3, .blog-title {
       color: ${({ theme }) => theme.title};
       &.post-item-title {
-        color: ${rgba(#fff, 0.95)};
+        color: ${rgba(`#ffffff`, 0.95)};
       }
     }
 		.menu li a,
