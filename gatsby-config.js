@@ -1,5 +1,5 @@
 const config = require(`./config/website`)
-const tailwindConfig = require(`./tailwind.js`)
+const tailwindConfig = require(`./tailwind.config.js`)
 const dotenv = require(`dotenv`)
 
 const pathPrefix = config.pathPrefix === `/` ? `` : config.pathPrefix
@@ -56,7 +56,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sass`,
       options: {
-        postCssPlugins: [require(`tailwindcss`)(`./tailwind.js`)],
+        postCssPlugins: [require(`tailwindcss`)(`./tailwind.config.js`)],
       },
     },
     {
