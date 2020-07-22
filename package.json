@@ -78,8 +78,7 @@
     "smooth-scroll": "^16.1.0",
     "styled-components": "^5.0.0-beta.8",
     "styled-icons": "^10.2.1",
-    "tailwind.macro": "0.5.10",
-    "tailwindcss": "0.7.4",
+    "tailwindcss": "^1.5.1",
     "typeface-lato": "^0.0.75",
     "typeface-lora": "^0.0.72"
   },
@@ -90,7 +89,6 @@
     "@babel/core": "^7.0.0-0",
     "babel-eslint": "^10.1.0",
     "babel-plugin-macros": "^2.8.0",
-    "babel-plugin-tailwind-components": "^0.5.10",
     "babel-preset-gatsby": "^0.2.23",
     "chalk": "^2.4.1",
     "cssnano": "^4.1.10",
