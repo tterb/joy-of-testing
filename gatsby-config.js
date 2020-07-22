@@ -54,12 +54,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-sass`,
-      options: {
-        postCssPlugins: [require(`tailwindcss`)(`./tailwind.config.js`)],
-      },
-    },
-    {
       resolve: `gatsby-plugin-lodash`,
       options: {
         disabledFeatures: [`cloning`, `flattening`, `metadata`, `placeholders`, `shorthands`],
