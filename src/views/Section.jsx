@@ -1,14 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Components
 import { FluidContainer } from '../components/Container'
 
 
-
 const Wrapper = styled.div`
-  ${tw`flex relative items-center w-full h-full mt-0`}
   background: ${props => props.background};
   width: ${props => props.width};
   padding: 2rem 12%;
@@ -16,7 +13,11 @@ const Wrapper = styled.div`
 
 const Section = ({ factor, offset, speed, width, background, className, children }) => (
   <FluidContainer factor={factor} offset={offset} speed={speed}>
-    <Wrapper className={className} background={background} width={width}>
+    <Wrapper
+      width={width}
+      background={background}
+      className={`${className} flex relative items-center w-full h-full mt-0`}
+    >
       { children }
     </Wrapper>
   </FluidContainer>

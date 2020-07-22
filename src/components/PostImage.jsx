@@ -1,12 +1,10 @@
+import React from 'react'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 
 // position: static on the image wrapper resets the absolute positioning and allows for some custom styling
 // the single/project templates have different headers
 
-const PostImage = styled.div`
-  ${tw`w-full h-full`}
-  box-sizing: border-box;
+const PostImageWrapper = styled.div`
   .gatsby-image-wrapper {
     position: static !important;
     min-height: 100%;
@@ -26,11 +24,12 @@ const PostImage = styled.div`
       }
     }
   }
-  &:after {
-    ${tw`absolute w-full h-full pin-t pin-l z-2`}
-    content: '';
-    backface-visibility: hidden;
-  }
 `
+
+const PostImage = (props) => (
+  <PostImageWrapper className='post-image' {...props}>
+    {props.children}
+  </PostImageWrapper>
+)
 
 export default PostImage

@@ -5,7 +5,6 @@ import Image from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { animated, useSpring, config } from 'react-spring'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 import { darken } from 'polished'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
@@ -20,46 +19,20 @@ import PostImage from '../components/PostImage'
 import { CommentCount } from '../../plugins/gatsby-plugin-disqus'
 
 
-const HeaderContent = styled(Wrapper)`
-  ${tw`absolute w-9/10 lg:w-4/5 pin-l pin-r pin-b mx-auto pt-8 pb-4 z-5`}
-`
-
-const ContentBody = styled(Wrapper)`
-  ${tw`w-9/10 lg:w-4/5 mx-auto pb-12`}
-`
-
-const Title = styled(animated.h1)`
-  ${tw`text-5xl sm:text-6xl md:text-7xl font-black leading-tighter w-9/10 my-0`}
-`
+const Title = styled(animated.h1)``
 
 const PostDetail = styled(animated.div)`
-  ${tw`flex flex-row flex-wrap items-center justify-start mx-0 mt-2 mb-1 pt-2 pl-2`}
   span::after {
-    ${tw`relative text-xs p-0 px-1`}
-    content: '•';
     color: ${props => props.color};
-    top: -2px;
-  }
-  span:last-child::after {
-    content: '';
-  }
-  .disqus-comment-count {
-    ${tw`block relative text-lg md:text-xl text-right leading-normal h-full pin-t m-0`}
   }
 `
 
 const PostDate = styled.span`
-  ${tw`block relative text-lg md:text-xl text-right leading-normal pin-t m-0`}
   right: 4px;
-  strong {
-    ${tw`font-black py-0 px-1`}
-  }
 `
 
 const PostBody = styled(animated.div)`
-  ${tw`m-auto pt-6 mb-16`}
   a {
-    ${tw`no-underline`}
     color: ${props => darken(0.1, props.color)} !important;
     transition: color 250ms ease-in-out;
     &:hover {
@@ -100,26 +73,42 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
         <PostImage customcolor={frontmatter.color} className='post-image'>
           <Image fluid={frontmatter.cover.childImageSharp.fluid} alt={frontmatter.title} />
         </PostImage>
-        <HeaderContent type='text' className='post-header'>
-          <Title data-testid='post-title' style={titleProps}>
+        <Wrapper type='text' className='post-header absolute w-9/10 lg:w-4/5 left-0 right-0 bottom-0 mx-auto pt-8 pb-4 z-5'>
+          <Title
+            data-testid='post-title'
+            style={titleProps}
+            className='font-black text-5xl sm:text-6xl md:text-7xl leading-tighter w-9/10 my-0'
+          >
             {frontmatter.title}
           </Title>
-          <PostDetail color={frontmatter.color} style={infoProps}>
-            <PostDate className='post-date'>
+          <PostDetail
+            color={frontmatter.color}
+            style={infoProps}
+            className='post-detail flex flex-row flex-wrap items-center justify-start mx-0 mt-2 mb-1 pt-2 pl-2'
+          >
+            <PostDate className='post-date block relative text-lg md:text-xl text-right leading-normal top-0 m-0'>
               {frontmatter.date.split(' ').map((item, i) => (
-                (i !== 1) ? <strong key={i}>{item}</strong> : item
+                (i !== 1) ? <strong key={i} className='font-black py-0 px-1'>{item}</strong> : item
               ))}
             </PostDate>
-            <CommentCount config={disqusConfig} placeholder={'...'} />
+            <CommentCount
+              config={disqusConfig}
+              placeholder={'...'}
+              className='block relative text-lg md:text-xl text-right leading-normal h-full top-0 m-0'
+            />
           </PostDetail>
-        </HeaderContent>
+        </Wrapper>
       </PostHero>
-      <ContentBody type='text' className='post-content'>
-        <PostBody style={contentProps} color={frontmatter.color}>
+      <Wrapper type='text' className='post-content w-9/10 lg:w-4/5 mx-auto pb-12'>
+        <PostBody
+          style={contentProps}
+          color={frontmatter.color}
+          className='text-lg lg:text-xl m-auto mt-0 mb-8 pt-6'
+        >
           <MDXRenderer>{node.body}</MDXRenderer>
         </PostBody>
         <CommentThread config={disqusConfig} theme={themeString} />
-      </ContentBody>
+      </Wrapper>
     </Layout>
   )
 }

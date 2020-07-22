@@ -2,18 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Image from 'gatsby-image'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Components
 import { FluidContainer } from '../components/Container'
 
 
 const Wrapper = styled.div`
-  ${tw`relative w-full mt-0 overflow-hidden`}
   height: 60vh;
 `
 
 const HeroImage = styled(Image)`
-  ${tw`w-full`}
   height: 60vh;
   > div {
     padding-bottom: 28% !important;
@@ -22,8 +19,12 @@ const HeroImage = styled(Image)`
 
 const Hero = ({ background, factor, offset, speed }) => (
   <FluidContainer factor={factor} offset={offset} speed={speed}>
-    <Wrapper>
-      <HeroImage fluid={background.childImageSharp.fluid} alt='Painting' />
+    <Wrapper className='relative w-full mt-0 overflow-hidden'>
+      <HeroImage
+        className='w-full'
+        fluid={background.childImageSharp.fluid}
+        alt='Painting'
+      />
     </Wrapper>
   </FluidContainer>
 )

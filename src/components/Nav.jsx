@@ -4,67 +4,36 @@ import Image from 'gatsby-image'
 import PropTypes from 'prop-types'
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Components
 import PageLink from './PageLink'
 import ThemeSwitcher from './ThemeSwitcher'
 
 
 const Wrapper = styled.div`
-  ${tw`relative block font-title h-0 pin-t pin-x z-50`}
   transform: translate3D(0, 0, 0);
 `
 
 const MenuContainer = styled.div`
-  ${tw`flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-10 z-999`}
   box-sizing: border-box;
 `
 
-const Menu = styled.ul`
-  ${tw`flex relative w-full font-title text-right list-reset m-0 md:mr-4 lg:mr-8 z-999`}
-  background: transparent;
-`
-
 const MenuItem = styled.li`
-  ${tw`inline-block text-xl cursor-pointer py-0 px-3 z-999`}
-  a {
-    ${tw`font-normal no-underline border-none`}
-    &:hover {
-      color: ${props => props.theme.accent} !important;
-    }
+  a:hover {
+    color: ${props => props.theme.accent} !important;
   }
   &:last-child {
-    ${tw`pr-0`}
+    padding-right: 0;
   }
 `
 
 const Navbar = styled.div`
-  ${tw`absolute`}
   right: 0.5rem;
-  @media screen and (max-width: 420px) {
-    right: 0;
+  @media screen and (max-width: 550px) {
+    right: 2rem;
   }
 `
 
 const MenuPanel = styled.div`
-  ${tw`fixed text-left pin-t pin-r p-8`}
-  background: #fff;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.7);
-  transform: translatey(-100vh);
-  transition: all 450ms ease, transform 0ms ease;
-  opacity: 0;
-  z-index: -1;
-  &::before {
-    ${tw`absolute w-full h-full pin-t pin-l`}
-    background: #fff;
-    content: '';
-    filter: blur(0);
-    transition: filter 350ms ease 250ms;
-    z-index: -1;
-  }
   &.active {
     transform: translateY(0);
     opacity: 0.9;
@@ -73,19 +42,18 @@ const MenuPanel = styled.div`
     }
   }
   li {
-    ${tw`relative block my-0 ml-0 mr-auto px-0 py-3 z-999`}
     font-size: 12vw;
     width: max-content;
     &:first-child {
       margin-top: 4rem;
     }
     a {
-      ${tw`font-bold`}
       color: rgba(0,0,0,0.75);
       &::before {
-        ${tw`absolute w-0`}
+        position: absolute;
         background: ${props => props.theme.accent};
         content: '';
+        width: 0;
         height: 8px;
         top: 50%;
         left: -10%;
@@ -103,7 +71,6 @@ const MenuPanel = styled.div`
 `
 
 const Button = styled.span`
-  ${tw`absolute flex flex-col justify-between cursor-pointer z-9999`}
   color: rgba(0,0,0,0.75);
   width: 30px;
   height: 25px;
@@ -115,7 +82,7 @@ const Button = styled.span`
     transform: rotate(-45deg);
     transition: all 200ms ease-out;
     .half {
-      ${tw`w-1/2`}
+      width: 50%;
     }
     .start {
       transform: rotate(-90deg) translateX(2px);
@@ -131,37 +98,32 @@ const Button = styled.span`
 `
 
 const Line = styled.div`
-  ${tw`w-full`}
   background: rgba(0,0,0,0.75);
   border-radius: 5px;
   height: 3px;
   transition: transform 350ms ease-out;
-  &.half {
-    ${tw`w-3/5`}
-  }
   &.start {
     transition: width 300ms ease-out, transform 250ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
     transform-origin: right;
   }
   &.end {
-    align-self: flex-end;
+    /* align-self: flex-end; */
     transition: width 300ms ease-out, transform 250ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
     transform-origin: left;
   }
 `
 
 const LogoWrapper = styled(PageLink)`
-  ${tw`relative`}
   min-width: 9.25rem;
   max-width: 11.25rem;
   top: -1.75rem;
 `
 
 const MenuButton = ({ status, onClick }) => (
-  <Button className={`menu-button ${status}`} onClick={onClick}>
-    <Line className='half start' />
-    <Line />
-    <Line className='half end' />
+  <Button className={`menu-button ${status} absolute flex flex-col justify-between cursor-pointer z-9999`} onClick={onClick}>
+    <Line className='half start w-3/5' />
+    <Line className='w-full' />
+    <Line className='half end w-3/5 self-end' />
   </Button>
 )
 MenuButton.propTypes = {
@@ -190,10 +152,11 @@ class Nav extends React.Component {
     return (
       <StaticQuery query={menuQuery}
         render={data => (
-          <Wrapper className='nav-wrapper'>
+          <Wrapper className='nav-wrapper relative block font-title h-0 top-0 inset-x-0 z-50'>
             <Fade top delay={250}>
-              <MenuContainer>
+              <MenuContainer className='flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-10 z-999'>
                 <LogoWrapper 
+                  className='relative'
                   to={data.site.siteMetadata.menuLinks[0].link} 
                   color={theme.accent}
                 >
@@ -202,27 +165,31 @@ class Nav extends React.Component {
                 { isMobile ? (
                   <MenuButton status={this.isPanelVisible()} onClick={this.toggleMenuPanel} />
                 ) : (
-                  <Navbar>
-                    <Menu className='menu'>
+                  <Navbar className='absolute'>
+                    <ul className='menu flex relative bg-transparent w-full font-title text-right list-reset m-0 md:mr-4 lg:mr-8 z-999'>
                       {data.site.siteMetadata.menuLinks.map((item) => (
-                          <MenuItem key={item.name}>
-                            <PageLink color={color} to={item.link}>{item.name}</PageLink>
+                          <MenuItem key={item.name} className='inline-block text-lg cursor-pointer py-0 px-3 z-999'>
+                            <PageLink
+                              className='font-normal no-underline border-none'
+                              color={color}
+                              to={item.link}
+                            >{item.name}</PageLink>
                           </MenuItem>
                         )
                       )}
                       {hasThemeSwitch ? (
                         <ThemeSwitcher theme={theme} themeString={themeString} themeToggler={themeToggler} />
                       ) : null}
-                    </Menu>
+                    </ul>
                   </Navbar>
                 )}
               </MenuContainer>
             </Fade>
             { isMobile ? (
-              <MenuPanel className={`${this.isPanelVisible()}`} theme={theme}>
+              <MenuPanel className={`${this.isPanelVisible()} menu-panel fixed text-left w-screen top-0 right-0 p-8`} theme={theme}>
                 {data.site.siteMetadata.menuLinks.map((item) => (
-                    <MenuItem key={item.name}>
-                      <PageLink color={color} to={item.link}>{item.name}</PageLink>
+                    <MenuItem className='relative block text-lg my-0 ml-0 mr-auto px-0 py-3 z-999 cursor-pointer' key={item.name}>
+                      <PageLink className='font-bold no-underline border-none' color={color} to={item.link}>{item.name}</PageLink>
                     </MenuItem>
                   )
                 )}

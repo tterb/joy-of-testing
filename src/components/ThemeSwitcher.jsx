@@ -1,29 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 import { TimelineMax } from 'gsap'
 import { rgba } from 'polished'
 // Icons
 import { Moon, Sun } from '@styled-icons/boxicons-solid'
 
 const Wrapper = styled.div`
-	${tw`relative flex items-center justify-center w-15`}
-	top: 0;
 	left: 0.75rem;
 	height: 1.875rem;
 `
 
 const Base = styled.div`
-	${tw`absolute relative flex items-center justify-between w-15 rounded-full p-2 cursor-pointer z-0`}
-	/* background: ${props => `${rgba(props.color, 0.15)}`}; */
 	background: ${props => `${props.color}`};
 	height: 1.875rem;
 	box-shadow: inset 0px -1px 6px -2px rgba(0,0,0,0.2);
 `
 
 const Switch = styled.span`
-	${tw`absolute w-7 h-7 rounded-full cursor-pointer z-10`}
 	background: ${props => `${props.color}`};
 	left: 2px;
 	box-shadow: 1px 1px 8px -5px rgba(0,0,0,0.3);
@@ -31,13 +25,11 @@ const Switch = styled.span`
 `
 
 const MoonIcon = styled(Moon)`
-	${tw`relative w-5 h-5 z-5`}
 	color: ${props => `${props.color}`};
 	left: -0.125rem;
 `
 
 const SunIcon = styled(Sun)`
-	${tw`relative w-5 h-5 z-5`}
 	color: ${props => `${props.color}`};
 	right: -0.125rem;
 `
@@ -73,14 +65,22 @@ class ThemeSwitcher extends React.Component {
 
 	render() {
 		return (
-			<Wrapper>
-				<Base 
+			<Wrapper className='relative flex items-center justify-center w-15 top-0'>
+				<Base
+					className='absolute relative flex items-center justify-between w-15 rounded-full p-2 cursor-pointer z-0'
 					color={this.props.theme.switchBase}
 					onClick={this.handleClick}
 				>
-					<MoonIcon color={this.colors.moon} />
-					<SunIcon color={this.colors.sun} />
+					<MoonIcon
+						className='relative w-5 h-5 z-5'
+						color={this.colors.moon}
+					/>
+					<SunIcon
+						className='relative w-5 h-5 z-5' 
+						color={this.colors.sun}
+					/>
 					<Switch
+						className='absolute w-7 h-7 rounded-full cursor-pointer z-10'
 						color={this.props.theme.switchColor}
 						ref={temp => (this.switch = temp)}
 					/>

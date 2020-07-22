@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Plugins
 import { Disqus } from '../../plugins/gatsby-plugin-disqus'
 
 
-const DisqusThread = styled(Disqus)`
-  ${tw`w-full mx-auto pb-8`}
-`
+const DisqusThread = styled(Disqus)``
 
 export default function CommentThread(props) {
 
@@ -26,6 +23,7 @@ export default function CommentThread(props) {
 
 	return (
     <DisqusThread
+	    className='w-full mx-auto pb-8'
       config={props.config}
       theme={themeState.toString()}
     />
