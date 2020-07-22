@@ -1,12 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Components
 import Canvas from './Canvas'
 
 
 const Wrapper = styled.div`
-  ${tw`relative flex flex-col justify-end self-start w-full mt-0 mx-auto pt-20 px-0 overflow-hidden`}
   height: 40vh;
   @media screen and (max-height: 800px) {
     height: 50vh;
@@ -15,20 +13,14 @@ const Wrapper = styled.div`
 `
 
 const Header = styled.div`
-  ${tw`flex flex-col-reverse w-full`}
   height: 50vh;
 `
 
 const Title = styled.h1`
-  ${tw`absolute font-black pin-b m-6 mb-8`}
   font-size: 4.25rem;
-  span {
-    ${tw`block leading-none`}
-  }
 `
 
 const Dot = styled.span`
-  ${tw`relative rounded-full pointer z-999`}
   display: inline-block !important;
   content: '';
   width: 14px;
@@ -89,8 +81,8 @@ class BlogHero extends React.Component {
 
   render() {
     return (
-      <Wrapper>
-        <Header>
+      <Wrapper className='relative flex flex-col justify-end self-start w-full mt-0 mx-auto pt-20 px-0 overflow-hidden'>
+        <Header className='flex flex-col-reverse w-full'>
           <Canvas
             brushColor={`${this.state.brushColor}d0`}
             canvasWidth={this.state.viewWidth}
@@ -98,10 +90,11 @@ class BlogHero extends React.Component {
             isActive={this.state.canvasVisible}
             theme={this.props.theme}
           />
-          <Title className='blog-title'>
-            <span>The Joy</span>
-            <span>of Testing
+          <Title className='blog-title absolute font-black bottom-0 m-6 mb-8'>
+            <span className='block leading-none'>The Joy</span>
+            <span className='block leading-none'>of Testing
               <Dot
+                className='relative inline-block rounded-full pointer z-999'
                 onClick={this.handleClick}
                 style={{ background: this.state.nextColor }}
               />

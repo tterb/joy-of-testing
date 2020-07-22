@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
-import tw from 'tailwind.macro'
 // Componemts
 import Footer from './Footer'
 import Nav from './Nav'
@@ -11,15 +10,14 @@ import { isMobileViewport } from '../hooks/windowDimensions'
 // Styles
 import { lightTheme, darkTheme } from '../styles/themes'
 import { GlobalStyle } from '../styles/global'
-import '../styles/main.scss'
+import '../styles/main.css'
 // Typefaces
 import 'typeface-lato'
 import 'typeface-lora'
 
 
 const Wrapper = styled.div`
-  ${tw`relative w-full z-1`}
-  min-height: 100vh;
+  /* min-height: 100vh; */
   box-shadow: 0 6px 15px -4px rgba(0,0,0,0.65);
 `
 
@@ -32,7 +30,7 @@ const Layout = (props) => {
 		<ThemeProvider theme={theme}>
 			<GlobalStyle theme={theme} color={color} />
 			{!customSEO && <SEO pathname={pathname} />}
-			<Wrapper id='page-layout' className='layout-wrapper'>
+			<Wrapper id='page-layout' className='layout-wrapper relative w-full min-h-screen z-1'>
 				<Nav
 					color={color || theme.accent}
 					theme={theme}

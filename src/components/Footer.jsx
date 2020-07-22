@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Icons
 import { Github, Gatsby } from '@styled-icons/remix-fill'
 // Config
@@ -8,38 +7,25 @@ import site from '../../config/website'
 
 
 const Container = styled.div`
-  ${tw`sticky grid w-full pin-l pin-b py-8 pb-7 z-0`}
   background: ${({ theme }) => `${theme.footer}`};
   place-items: center;
 `
 
-const Wrapper = styled.div`
-  ${tw`flex flex-row items-center font-sans text-left w-9/10 m-auto`}
-`
-
-const TextWrapper = styled.div`
-  ${tw`w-full`}
-`
-
 const Title = styled.h2`
-  ${tw`font-sans font-black text-white w-full md:w-7/10 mr-auto mt-0 mb-2`}
   font-size: 2.25rem;
 `
 
 const Text = styled.p`
-  ${tw`text-base w-full md:w-4/5 mr-auto`}
   color: rgba(255,255,255,0.75);
 `
 
 const IconWrapper = styled.div`
-  ${tw`inline-flex align-middle pt-1 pb-2`}
   a {
     svg {
-      ${tw`text-white w-9 opacity-75 hover:opacity-100 mr-3`}
       transition: all 250ms ease-in-out;
-      &:nth-child(2) {
+      /* &:nth-child(2) {
         width: 2.2rem;
-      }
+      } */
     }
   }
 `
@@ -52,24 +38,24 @@ const Disqus = () => (
 )
 
 const Footer = ({ theme }) => (
-  <Container theme={theme}>
-    <Wrapper>
-      <TextWrapper>
-        <Title>The Joy of Testing</Title>
-        <Text>We don't make mistakes, we just have happy accidents.</Text>
-      </TextWrapper>
-      <IconWrapper>
+  <Container className='sticky grid w-full left-0 bottom-0 py-8 pb-7 z-0' theme={theme}>
+    <div className='flex flex-row items-center font-sans text-left w-9/10 m-auto'>
+      <div className='w-full'>
+        <Title className='font-sans font-black text-white w-full md:w-7/10 mr-auto mt-0 mb-2'>The Joy of Testing</Title>
+        <Text className='text-base w-full md:w-4/5 mr-auto'>We don't make mistakes, we just have happy accidents.</Text>
+      </div>
+      <IconWrapper className='inline-flex align-middle pt-1 pb-2'>
         <a href={site.links.github} target="_blank" rel="noopener noreferrer">
-          <Github />
+          <Github className='text-white w-9 opacity-75 hover:opacity-100 mr-3' />
         </a>
         <a href={site.links.disqus} target="_blank" rel="noopener noreferrer">
-          <Disqus />
+          <Disqus className='text-white w-9 opacity-75 hover:opacity-100 mr-3' />
         </a>
         <a href={site.links.gatsby} target="_blank" rel="noopener noreferrer">
-          <Gatsby />
+          <Gatsby className='text-white w-9 opacity-75 hover:opacity-100 mr-3' />
         </a>
       </IconWrapper>
-    </Wrapper>
+    </div>
   </Container>
 );
 

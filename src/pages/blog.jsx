@@ -3,23 +3,19 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { useTrail } from 'react-spring'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
 // Components
 import Layout from '../components/Layout'
-import PostItem from '../components/PostItem'
+import PostTile from '../components/PostTile'
 import BlogHero from '../components/BlogHero'
 
 
 const Wrapper = styled.div`
-  ${tw`relative w-full h-auto pin-t my-0 mx-auto`}
   z-index: -999;
 `
 
 const ListWrapper = styled.div`
-  ${tw`w-full`}
-  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-gap: 2px;
 `
@@ -37,10 +33,10 @@ const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
       themeToggler={themeToggler}
     >
       <BlogHero theme={themeString} />
-      <Wrapper>
-        <ListWrapper className='blog-wrapper'>
+      <Wrapper className='relative w-full h-auto top-0 my-0 mx-auto'>
+        <ListWrapper className='blog-wrapper grid w-full'>
           {trail.map((style, index) => (
-            <PostItem
+            <PostTile
               testid={`postItem-${index}`}
               style={style}
               key={post[index].node.fields.slug}

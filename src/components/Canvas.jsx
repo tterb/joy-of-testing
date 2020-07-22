@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import tw from 'tailwind.macro'
 import CanvasDraw from 'react-canvas-draw'
 // Icons
 import Eraser from '../images/icons/eraser.svg'
@@ -11,33 +10,18 @@ import SaveDark from '../images/icons/save-dark.svg'
 import TrashDark from '../images/icons/trash-dark.svg'
 
 const CanvasArea = styled(CanvasDraw)`
-  ${tw`absolute pin-t`}
-  width: 100vw !important;
   height: 50vh;
 `
 
 const Interface = styled.div`
-  ${tw`absolute flex flex-col w-16 z-999`}
   height: 50vh;
   right: 1rem;
 `
-const ButtonWrapper = styled.div`
-  ${tw`relative flex flex-col m-auto mb-6`}
-`
 
 const UiButton = styled.button`
-  ${tw`w-12 h-12 rounded-full border-none mt-4 p-1 cursor-pointer`}
-  outline: none;
   transition: all 250ms ease-in-out;
   svg {
-    ${tw`cursor-pointer opacity-50`}
     transition: all 250ms ease-in-out;
-  }
-  &:hover {
-    box-shadow: 0 6px 12px -2px rgba(0,0,0,0.2);
-    svg {
-      ${tw`opacity-75`}
-    }
   }
 `
 
@@ -107,7 +91,7 @@ class Canvas extends React.Component {
     return (
         <>
           <CanvasArea
-            className='canvas'
+            className='canvas absolute w-screen top-0'
             ref={canvas => (this.canvas = canvas)}
             brushColor={this.state.brushColor}
             brushRadius={this.state.brushRadius}
@@ -122,34 +106,58 @@ class Canvas extends React.Component {
             onKeyDown={this.onKeyPressed}
           />
           {this.props.isActive ? (
-            <Interface>
+            <Interface className='absolute flex flex-col w-16 z-999'>
               {this.props.theme !== 'dark' ? (
-                <ButtonWrapper className='button-wrapper'>
-                  <UiButton onClick={this.handleSave}>
-                    <Save width='20px' height='20px' />
+                <div className='button-wrapper relative flex flex-col m-auto mb-6'>
+                  <UiButton className='ui-button' onClick={this.handleSave}>
+                    <Save
+                      width='20px'
+                      height='20px'
+                      className='cursor-pointer opacity-50'
+                    />
                   </UiButton>
-                  <UiButton onClick={this.toggleErase}>
-                    <Eraser width='24px' height='24px' />
+                  <UiButton className='ui-button' onClick={this.toggleErase}>
+                    <Eraser
+                      width='24px'
+                      height='24px'
+                      className='cursor-pointer opacity-50'
+                    />
                   </UiButton>
-                  <UiButton onClick={this.handleClear}>
-                    <Trash width='24px' height='24px' />
+                  <UiButton className='ui-button' onClick={this.handleClear}>
+                    <Trash
+                      width='24px'
+                      height='24px'
+                      className='cursor-pointer opacity-50'
+                    />
                   </UiButton>
-                  </ButtonWrapper>
+                </div>
               ) : (
-                <ButtonWrapper className='button-wrapper'>
-                  <UiButton onClick={this.handleSave}>
-                    <SaveDark width='20px' height='20px' />
+                <div className='button-wrapper relative flex flex-col m-auto mb-6'>
+                  <UiButton className='ui-button' onClick={this.handleSave}>
+                    <SaveDark
+                      width='20px'
+                      height='20px'
+                      className='cursor-pointer opacity-50'
+                    />
                   </UiButton>
-                  <UiButton onClick={this.toggleErase}>
-                    <EraserDark width='24px' height='24px' />
+                  <UiButton className='ui-button' onClick={this.toggleErase}>
+                    <EraserDark
+                      width='24px'
+                      height='24px'
+                      className='cursor-pointer opacity-50'
+                    />
                   </UiButton>
-                  <UiButton onClick={this.handleClear}>
-                    <TrashDark width='24px' height='24px' />
+                  <UiButton className='ui-button' onClick={this.handleClear}>
+                    <TrashDark
+                      width='24px'
+                      height='24px'
+                      className='cursor-pointer opacity-50'
+                    />
                   </UiButton>
-                  </ButtonWrapper>
+                </div>
               )}
             </Interface>
-          ) : null}
+           ) : null}
         </>
     )
   }
