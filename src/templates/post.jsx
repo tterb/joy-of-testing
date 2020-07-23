@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Image from 'gatsby-image'
-import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { animated, useSpring, config } from 'react-spring'
 import styled from 'styled-components'
 import { darken } from 'polished'
@@ -13,6 +12,7 @@ import CommentThread from '../components/CommentThread'
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import SEO from '../components/SEO'
+import MDXWrapper from '../components/MDXWrapper'
 import PostHero from '../components/PostHero'
 import PostImage from '../components/PostImage'
 // Plugins
@@ -105,7 +105,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
           color={frontmatter.color}
           className='text-xl lg:text-2xl m-auto mt-0 mb-8 pt-6'
         >
-          <MDXRenderer>{node.body}</MDXRenderer>
+          <MDXWrapper>{node.body}</MDXWrapper>
         </PostBody>
         <CommentThread config={disqusConfig} theme={themeString} />
       </Wrapper>
