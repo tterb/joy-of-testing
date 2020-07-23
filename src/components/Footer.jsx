@@ -20,13 +20,8 @@ const Text = styled.p`
 `
 
 const IconWrapper = styled.div`
-  a {
-    svg {
-      transition: all 250ms ease-in-out;
-      /* &:nth-child(2) {
-        width: 2.2rem;
-      } */
-    }
+  a svg {
+    transition: all 250ms ease-in-out;
   }
 `
 
@@ -41,7 +36,7 @@ const Footer = ({ theme }) => (
   <Container className='sticky grid w-full left-0 bottom-0 py-8 pb-7 z-0' theme={theme}>
     <div className='flex flex-row items-center font-sans text-left w-9/10 m-auto'>
       <div className='w-full'>
-        <Title className='font-sans font-black text-white w-full md:w-7/10 mr-auto mt-0 mb-2'>The Joy of Testing</Title>
+        <Title className='font-sans font-black text-white leading-none w-full md:w-7/10 mr-auto mt-0 mb-2'>The Joy of Testing</Title>
         <Text className='text-base w-full md:w-4/5 mr-auto'>We don't make mistakes, we just have happy accidents.</Text>
       </div>
       <IconWrapper className='inline-flex align-middle pt-1 pb-2'>

@@ -17,7 +17,6 @@ import 'typeface-lora'
 
 
 const Wrapper = styled.div`
-  /* min-height: 100vh; */
   box-shadow: 0 6px 15px -4px rgba(0,0,0,0.65);
 `
 

@@ -113,21 +113,21 @@ class Canvas extends React.Component {
                     <Save
                       width='20px'
                       height='20px'
-                      className='cursor-pointer opacity-50'
+                      className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
                   <UiButton className='ui-button' onClick={this.toggleErase}>
                     <Eraser
                       width='24px'
                       height='24px'
-                      className='cursor-pointer opacity-50'
+                      className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
                   <UiButton className='ui-button' onClick={this.handleClear}>
                     <Trash
                       width='24px'
                       height='24px'
-                      className='cursor-pointer opacity-50'
+                      className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
                 </div>
@@ -137,21 +137,21 @@ class Canvas extends React.Component {
                     <SaveDark
                       width='20px'
                       height='20px'
-                      className='cursor-pointer opacity-50'
+                      className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
                   <UiButton className='ui-button' onClick={this.toggleErase}>
                     <EraserDark
                       width='24px'
                       height='24px'
-                      className='cursor-pointer opacity-50'
+                      className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
                   <UiButton className='ui-button' onClick={this.handleClear}>
                     <TrashDark
                       width='24px'
                       height='24px'
-                      className='cursor-pointer opacity-50'
+                      className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
                 </div>
