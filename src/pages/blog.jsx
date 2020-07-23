@@ -20,7 +20,7 @@ const ListWrapper = styled.div`
   grid-gap: 2px;
 `
 
-const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
+const Blog = ({ data: { site, allMdx: { edges: post } }, location }) => {
   const trail = useTrail(post.length, {
     from: { height: '0%' },
     to: { height: '100%' },
@@ -41,6 +41,8 @@ const Blog = ({ data: { allMdx: { edges: post } }, location }) => {
               style={style}
               key={post[index].node.fields.slug}
               post={post[index].node}
+              postUrl={site.siteMetadata.siteUrl+post[index].node.fields.slug}
+              postId={post[index].node.id}
             />
           ))}
         </ListWrapper>
@@ -61,12 +63,18 @@ export default Blog
 
 export const blogQuery = graphql`
   query BlogQuery {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { fields: { sourceInstanceName: { eq: "posts" } } }
     ) {
       edges {
         node {
+          id,
           fields {
             slug
           }

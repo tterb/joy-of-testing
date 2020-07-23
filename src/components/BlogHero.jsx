@@ -94,7 +94,7 @@ class BlogHero extends React.Component {
             <span className='block leading-none'>The Joy</span>
             <span className='block leading-none'>of Testing
               <Dot
-                className='relative inline-block rounded-full pointer z-999'
+                className='relative inline-block rounded-full pointer z-20'
                 onClick={this.handleClick}
                 style={{ background: this.state.nextColor }}
               />

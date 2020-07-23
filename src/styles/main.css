@@ -32,16 +32,16 @@ h1, h2, h3, h4 {
   box-shadow: 0 6px 12px -2px rgba(0,0,0,0.2);
 }
 .menu-panel {
-  @apply fixed bg-white text-left w-screen h-screen top-0 right-0 p-8 opacity-0;
+  @apply fixed text-left w-screen h-screen top-0 right-0 p-8 opacity-0;
   box-shadow: 0 0 10px rgba(0,0,0,0.7);
   transform: translatey(-100vh);
   transition: all 450ms ease, transform 0ms ease;
   z-index: -1;
 }
 .menu-panel::before {
-  @apply absolute bg-white w-full h-full top-0 left-0;
+  @apply absolute w-full h-full top-0 left-0;
   content: '';
-  filter: blur(0);
+  backdrop-filter: blur(1rem);
   transition: filter 350ms ease 250ms;
   z-index: -1;
 }
@@ -73,6 +73,7 @@ h1, h2, h3, h4 {
 }
 .tile-image-wrapper > div {
   @apply absolute w-full h-full top-0 left-0;
+  position: absolute !important;
 }
 .tile-image-wrapper > div > div {
   @apply static;

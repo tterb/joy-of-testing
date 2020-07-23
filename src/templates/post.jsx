@@ -77,7 +77,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
           <Title
             data-testid='post-title'
             style={titleProps}
-            className='font-black text-5xl sm:text-6xl md:text-7xl leading-tighter w-9/10 my-0'
+            className='font-black text-6xl sm:text-7xl md:text-8xl leading-tighter w-9/10 my-0'
           >
             {frontmatter.title}
           </Title>
@@ -103,7 +103,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
         <PostBody
           style={contentProps}
           color={frontmatter.color}
-          className='text-lg lg:text-xl m-auto mt-0 mb-8 pt-6'
+          className='text-xl lg:text-2xl m-auto mt-0 mb-8 pt-6'
         >
           <MDXRenderer>{node.body}</MDXRenderer>
         </PostBody>
