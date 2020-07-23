@@ -103,7 +103,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
         <PostBody
           style={contentProps}
           color={frontmatter.color}
-          className='text-xl lg:text-2xl m-auto mt-0 mb-8 pt-6'
+          className='text-xl m-auto mt-0 mb-8 pt-6'
         >
           <MDXWrapper>{node.body}</MDXWrapper>
         </PostBody>
