@@ -105,6 +105,10 @@
     "postcss-reporter": "^6.0.1",
     "webpack": "^4.4.0"
   },
+  "resolutions": {
+    "jpeg-js": "^0.4.0",
+    "serialize-javascript": "^3.1.0"
+  },
   "repository": {
     "url": "https://github.com/tterb/joy-of-testing",
     "type": "git"
