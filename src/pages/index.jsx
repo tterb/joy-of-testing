@@ -10,6 +10,8 @@ import Quote from '../components/Quote'
 // Views
 import Hero from '../views/Hero'
 import Section from '../views/Section'
+// Plugins
+import { Recommendations } from '../../plugins/gatsby-plugin-disqus'
 
 
 const Index = ({ location, pages }) => {
@@ -36,6 +38,7 @@ const Index = ({ location, pages }) => {
         >
           <Quote />
         </Section>
+        <Recommendations />
       </Parallax>
     </Layout>
   )
