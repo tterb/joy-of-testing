@@ -16,7 +16,7 @@ import MDXWrapper from '../components/MDXWrapper'
 import PostHero from '../components/PostHero'
 import PostImage from '../components/PostImage'
 // Plugins
-import { CommentCount } from '../../plugins/gatsby-plugin-disqus'
+import { CommentCount, Recommendations } from '../../plugins/gatsby-plugin-disqus'
 
 
 const Title = styled(animated.h1)``
@@ -105,6 +105,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
           color={frontmatter.color}
           className='text-xl m-auto mt-0 mb-8 pt-6'
         >
+          <Recommendations />
           <MDXWrapper>{node.body}</MDXWrapper>
         </PostBody>
         <CommentThread config={disqusConfig} theme={themeString} />
