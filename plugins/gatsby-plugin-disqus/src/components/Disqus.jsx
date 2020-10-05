@@ -48,7 +48,8 @@ export default class Disqus extends React.Component {
                 this.page.title = config.title
                 this.page.url = config.url
             }
-            insertScript(this.embedUrl, 'disqus-embed-script', window.document.body)
+            if (!window.document.getElementById('disqus-embed-script'))
+                insertScript(this.embedUrl, 'disqus-embed-script', window.document.body)
         }
     }
 
