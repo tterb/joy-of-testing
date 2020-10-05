@@ -30,6 +30,7 @@
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-spread": "^7.10.1",
+    "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@testing-library/jest-dom": "^5.0.0",
     "@testing-library/react": "^9.4.0",
