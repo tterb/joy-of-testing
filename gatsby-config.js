@@ -13,8 +13,9 @@ dotenv.config({
 
 const SHORTNAME = `happy-little-trees`
 const PROTOCOL = process.env.PROTOCOL || `https`
-const BASE = process.env.BASE || `disqus.com/embed.js`
-const EMBED_URL = `${PROTOCOL}://${SHORTNAME}.${BASE}`
+const BASE = process.env.BASE || `disqus.com`
+const EMBED_URL = `${PROTOCOL}://${SHORTNAME}.${BASE}/embed.js`
+const RECS_URL = `${PROTOCOL}://${SHORTNAME}.${BASE}/recommendations.js`
 
 module.exports = {
   /* General Information */
@@ -51,6 +52,7 @@ module.exports = {
       options: {
         shortname: SHORTNAME,
         embedUrl: EMBED_URL,
+        recommendationsUrl: RECS_URL,
       },
     },
     {
@@ -127,7 +129,7 @@ module.exports = {
         ],
       },
     },
-    { 
+    {
       resolve: `gatsby-plugin-purgecss`,
       options: {
         // printRejected: true,
