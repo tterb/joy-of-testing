@@ -7,6 +7,9 @@
       }
     ]
   ],
-  "plugins": ["@babel/plugin-proposal-class-properties", "@babel/plugin-transform-spread"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-spread"
+  ],
   "ignore": ["src/__test__/"]
 }
