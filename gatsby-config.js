@@ -13,9 +13,11 @@ dotenv.config({
 
 const SHORTNAME = `happy-little-trees`
 const PROTOCOL = process.env.PROTOCOL || `https`
-const BASE = process.env.BASE || `disqus.com`
-const EMBED_URL = `${PROTOCOL}://${SHORTNAME}.${BASE}/embed.js`
-const RECS_URL = `${PROTOCOL}://${SHORTNAME}.${BASE}/recommendations.js`
+const BASE = process.env.BASE || `${SHORTNAME}.disqus.com/`
+const EMBED_PATH = BASE.replace('<app_name>', 'embed') + 'embed.js'
+const RECS_PATH = BASE.replace('<app_name>', 'recommendations') + 'recommendations.js'
+const EMBED_URL = `${PROTOCOL}://${EMBED_PATH}`
+const RECS_URL = `${PROTOCOL}://${RECS_PATH}`
 
 module.exports = {
   /* General Information */
