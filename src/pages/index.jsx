@@ -38,7 +38,14 @@ const Index = ({ location, pages }) => {
         >
           <Quote />
         </Section>
-        <Recommendations />
+        <Section
+          className='recommendations-section'
+          factor={0.5}
+          offset={0.5}
+          speed={0.2}
+        >
+          <Recommendations className='w-full' />
+        </Section>
       </Parallax>
     </Layout>
   )
