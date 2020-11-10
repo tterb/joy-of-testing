@@ -9,22 +9,9 @@ export default class Disqus extends React.Component {
         super(props)
         this.shortname = (GATSBY_DISQUS_SHORTNAME && GATSBY_DISQUS_SHORTNAME.length) ? GATSBY_DISQUS_SHORTNAME : ''
         this.embedUrl = (GATSBY_DISQUS_EMBED_URL && GATSBY_DISQUS_EMBED_URL.length) ? GATSBY_DISQUS_EMBED_URL : `https://${this.shortname}.disqus.com/embed.js`
-
-        if (props.config) {
-            this.config = props.config
-        } else {
-            this.config = {
-                identifier: props.identifier,
-                url: props.url,
-                title: props.title,
-            }
-        }
     }
 
     componentDidMount() {
-        if (typeof window !== 'undefined' && window.document && this.shortname) {
-            this.cleanInstance()
-        }
         this.loadInstance()
     }
 
@@ -39,25 +26,42 @@ export default class Disqus extends React.Component {
         this.loadInstance()
     }
 
+    componentWillUnmount() {
+        this.cleanInstance()
+    }
+
+    getDisqusConfig(config) {
+        return function() {
+            this.page.identifier = config.identifier
+            this.page.url = config.url
+            this.page.title = config.title
+            this.page.remote_auth_s3 = config.remoteAuthS3
+            this.page.api_key = config.apiKey
+            this.language = config.language
+        }
+    }
 
     loadInstance() {
-        if (typeof window !== 'undefined' && window.document && this.shortname) {
-            const config = this.config
-            window.disqus_config = function() {
-                this.page.identifier = config.identifier
-                this.page.title = config.title
-                this.page.url = config.url
+        if (typeof window !== 'undefined' && window.document) {
+            window.disqus_config = this.getDisqusConfig(this.props.config)
+            if (window.document.getElementById('dsq-embed-scr')) {
+                this.reloadInstance()
+            } else {
+                insertScript(this.embedUrl, 'dsq-embed-scr', window.document.body)
             }
-            if (!window.document.getElementById('disqus-embed-script'))
-                insertScript(this.embedUrl, 'disqus-embed-script', window.document.body)
+        }
+    }
+
+    reloadInstance() {
+        if (window && window.DISQUS) {
+            window.DISQUS.reset({
+                reload: true,
+            })
         }
     }
 
     cleanInstance() {
-        removeScript('disqus-embed-script', window.document.body)
-        if (window && window.DISQUS) {
-            window.DISQUS.reset()
-        }
+        removeScript('dsq-embed-scr', window.document.body)
         try {
             delete window.DISQUS
         } catch (error) {
@@ -68,6 +72,12 @@ export default class Disqus extends React.Component {
             while (thread.hasChildNodes()) {
                 thread.removeChild(thread.firstChild)
             }
+        }
+        // Retrieve and remove the sidebar iframe
+        const iframeQuery = window.document.querySelector('[id^="dsq-app"]')
+        if (iframeQuery) {
+            const iframe = window.document.getElementById(window.document.querySelector('[id^="dsq-app"]').id)
+            iframe.parentNode.removeChild(iframe)
         }
     }
 
