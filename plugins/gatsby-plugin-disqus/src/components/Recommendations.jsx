@@ -47,7 +47,7 @@ export default class Recommendations extends React.Component {
             if (window.document.getElementById('dsq-recs-scr')) {
                 this.reloadInstance()
             } else {
-                insertScript(this.embedUrl, 'dsq-recs-scr', window.document.body)
+                insertScript(this.recommendationsUrl, 'dsq-recs-scr', window.document.body)
             }
         }
     }
