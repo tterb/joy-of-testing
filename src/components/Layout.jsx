@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { ThemeProvider } from 'styled-components'
-// Componemts
+// Components
 import Footer from './Footer'
 import Nav from './Nav'
 import SEO from './SEO'
@@ -13,7 +13,6 @@ import { GlobalStyle } from '../styles/global'
 import '../styles/main.css'
 // Typefaces
 import 'typeface-lato'
-import 'typeface-lora'
 
 
 const Wrapper = styled.div`
