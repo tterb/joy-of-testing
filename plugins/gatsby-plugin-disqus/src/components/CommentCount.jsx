@@ -41,6 +41,10 @@ export default class CommentCount extends React.Component {
         this.loadInstance()
     }
 
+    componentWillUnmount() {
+        this.cleanInstance()
+    }
+
     loadInstance() {
         if (window.document.getElementById('dsq-count-scr')) {
             queueResetCount()
