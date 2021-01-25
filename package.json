@@ -59,7 +59,7 @@
     "gatsby-source-filesystem": "^2.0.27",
     "gatsby-transformer-remark": "^2.3.4",
     "gatsby-transformer-sharp": "^2.2.0",
-    "gsap": "^2.1.2",
+    "gsap": "^3.6.0",
     "lodash": "^4.17.19",
     "polished": "^3.4.4",
     "prism-react-renderer": "^0.1.7",
