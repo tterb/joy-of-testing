@@ -5,7 +5,7 @@ export const lightTheme = {
 	title: `${rgba('#000', 0.75)}`,
 	text: `${rgba('#000', 0.75)}`,
 	gradient: `${rgba('#FFF', 0.2)}`,
-	switchBase: `${rgba('#000', 0.075)}`,
+	switchBase: `#F9F9F9D0`,
 	switchColor: '#FFF',
 	accent: '#F2433B',
 	buttonShadow: `0 2px 2px ${rgba('#000', 0.2)}`,

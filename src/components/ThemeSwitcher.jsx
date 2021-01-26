@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { TimelineMax } from 'gsap'
+import gsap from 'gsap'
 import { rgba } from 'polished'
 // Icons
 import { Moon, Sun } from '@styled-icons/boxicons-solid'
@@ -21,7 +21,6 @@ const Switch = styled.span`
 	background: ${props => `${props.color}`};
 	left: 2px;
 	box-shadow: 1px 1px 8px -5px rgba(0,0,0,0.3);
-	transition: transform 0.2s linear;
 `
 
 const MoonIcon = styled(Moon)`
@@ -42,7 +41,6 @@ class ThemeSwitcher extends React.Component {
 			sun: '#F9C941',
 		}
 		this.switch = null
-		this.tween = new TimelineMax({ paused: true })
 		this.handleClick = this.handleClick.bind(this)
 	}
 
@@ -56,10 +54,10 @@ class ThemeSwitcher extends React.Component {
 	}
 
 	updateSwitchPosition(xPos) {
-		this.tween.to(this.switch, 0.5, {
+		gsap.to(this.switch, 0.75, {
 			x: xPos,
 			transformOrigin: 'center',
-			ease: Power1.easeInOut,
+			ease: 'power2',
 		}).play()
 	}
 
@@ -67,7 +65,7 @@ class ThemeSwitcher extends React.Component {
 		return (
 			<Wrapper className='relative flex items-center justify-center w-15 top-0'>
 				<Base
-					className='absolute relative flex items-center justify-between w-15 rounded-full p-2 cursor-pointer z-0'
+					className='relative flex items-center justify-between w-15 rounded-full p-2 cursor-pointer z-0'
 					color={this.props.theme.switchBase}
 					onClick={this.handleClick}
 				>
@@ -76,7 +74,7 @@ class ThemeSwitcher extends React.Component {
 						color={this.colors.moon}
 					/>
 					<SunIcon
-						className='relative w-5 h-5 z-5' 
+						className='relative w-5 h-5 z-5'
 						color={this.colors.sun}
 					/>
 					<Switch
