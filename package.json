@@ -21,10 +21,10 @@
     "joy",
     "testing",
     "bob-ross",
-    "paintings",
-    "disqus",
+    "painting",
+    "gatsby",
     "blog",
-    "gatsby"
+    "disqus"
   ],
   "dependencies": {
     "@hot-loader/react-dom": "^16.10.2",
@@ -105,9 +105,11 @@
     "webpack": "^4.4.0"
   },
   "resolutions": {
+    "axios": "^0.21.1",
     "bl": "^4.0.3",
     "jpeg-js": "^0.4.0",
     "node-fetch": "^2.6.1",
+    "node-forge": "^0.10.0",
     "serialize-javascript": "^3.1.0"
   },
   "repository": {
