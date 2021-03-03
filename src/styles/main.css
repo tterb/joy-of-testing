@@ -17,7 +17,7 @@ h1, h2, h3, h4 {
   @apply font-sans;
 }
 
-#___gatsby, 
+#___gatsby,
 #___gatsby > div {
   @apply h-full;
 }
@@ -25,11 +25,13 @@ h1, h2, h3, h4 {
 @tailwind components;
 
 .ui-button {
-  @apply w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer;
+  transform: scale(1);
 }
 .ui-button:hover {
-  @apply opacity-75;
   box-shadow: 0 6px 12px -2px rgba(0,0,0,0.2);
+}
+.ui-button:active {
+  transform: scale(0.8);
 }
 .menu-panel {
   @apply fixed text-left w-screen h-screen top-0 right-0 p-8 opacity-0;

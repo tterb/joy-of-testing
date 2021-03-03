@@ -98,7 +98,7 @@ class Canvas extends React.Component {
             catenaryColor={catenaryColor}
             lazyRadius={6}
             hideGrid={true}
-            loadTimeOffset={0}
+            loadTimeOffset={10}
             saveData={savedCanvas}
             disabled={!this.props.isActive}
             {...this.props}
@@ -109,21 +109,21 @@ class Canvas extends React.Component {
             <Interface className='absolute flex flex-col w-16 z-999'>
               {this.props.theme !== 'dark' ? (
                 <div className='button-wrapper relative flex flex-col m-auto mb-6'>
-                  <UiButton className='ui-button' onClick={this.handleSave}>
+                  <UiButton className='ui-button w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer' onClick={this.handleSave}>
                     <Save
                       width='20px'
                       height='20px'
                       className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
-                  <UiButton className='ui-button' onClick={this.toggleErase}>
+                  <UiButton className='ui-button w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer' onClick={this.toggleErase}>
                     <Eraser
                       width='24px'
                       height='24px'
                       className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
-                  <UiButton className='ui-button' onClick={this.handleClear}>
+                  <UiButton className='ui-button w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer' onClick={this.handleClear}>
                     <Trash
                       width='24px'
                       height='24px'
@@ -133,21 +133,21 @@ class Canvas extends React.Component {
                 </div>
               ) : (
                 <div className='button-wrapper relative flex flex-col m-auto mb-6'>
-                  <UiButton className='ui-button' onClick={this.handleSave}>
+                  <UiButton className='ui-button w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer' onClick={this.handleSave}>
                     <SaveDark
                       width='20px'
                       height='20px'
                       className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
-                  <UiButton className='ui-button' onClick={this.toggleErase}>
+                  <UiButton className='ui-button w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer active:border-none active:outline-none' onClick={this.toggleErase}>
                     <EraserDark
                       width='24px'
                       height='24px'
                       className='cursor-pointer mx-auto opacity-50'
                     />
                   </UiButton>
-                  <UiButton className='ui-button' onClick={this.handleClear}>
+                  <UiButton className='ui-button w-12 h-12 rounded-full border-none mt-4 p-1 outline-none cursor-pointer' onClick={this.handleClear}>
                     <TrashDark
                       width='24px'
                       height='24px'

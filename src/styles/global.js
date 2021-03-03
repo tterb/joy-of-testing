@@ -59,6 +59,10 @@ export const GlobalStyle = createGlobalStyle`
         background: ${({ theme }) => theme.background};
         box-shadow: ${({ theme }) => theme.buttonShadow};
     }
+    .button-wrapper button:hover {
+        background: ${({ theme }) => theme.buttonHover};
+        box-shadow: ${({ theme }) => theme.buttonShadow};
+    }
 		.post-image {
 			transition: all 500ms linear 0ms;
 		}
