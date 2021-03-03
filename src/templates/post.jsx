@@ -7,8 +7,8 @@ import styled from 'styled-components'
 import { darken } from 'polished'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
+import useTransition from '../hooks/useTransition'
 // Components
-import CommentThread from '../components/CommentThread'
 import Layout from '../components/Layout'
 import Wrapper from '../components/Wrapper'
 import SEO from '../components/SEO'
@@ -16,7 +16,7 @@ import MDXWrapper from '../components/MDXWrapper'
 import PostHero from '../components/PostHero'
 import PostImage from '../components/PostImage'
 // Plugins
-import { CommentCount, Recommendations } from '../../plugins/gatsby-plugin-disqus'
+import { Disqus, CommentCount, Recommendations } from '../../plugins/gatsby-plugin-disqus'
 
 
 const Title = styled(animated.h1)``
@@ -45,6 +45,7 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
   const frontmatter = node.frontmatter
   const siteUrl = site.siteMetadata.siteUrl
   const [themeString, themeToggler] = useDarkMode()
+  const isDarkMode = themeString === 'dark'
   const disqusConfig = {
     url: `${siteUrl+location.pathname}`,
     identifier: node.id,
@@ -105,10 +106,14 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
           color={frontmatter.color}
           className='text-xl m-auto mt-0 mb-8 pt-6'
         >
-          <Recommendations />
+          <Recommendations theme={useTransition(isDarkMode).toString()} />
           <MDXWrapper>{node.body}</MDXWrapper>
         </PostBody>
-        <CommentThread config={disqusConfig} theme={themeString} />
+        <Disqus
+          className='w-full mx-auto pb-8'
+          config={disqusConfig}
+          theme={useTransition(isDarkMode).toString()}
+        />
       </Wrapper>
     </Layout>
   )

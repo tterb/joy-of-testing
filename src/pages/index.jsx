@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import { Parallax } from 'react-spring/renderprops-addons'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
+import useTransition from '../hooks/useTransition'
 // Components
 import Layout from '../components/Layout'
 import Quote from '../components/Quote'
@@ -17,6 +18,7 @@ import { Recommendations } from '../../plugins/gatsby-plugin-disqus'
 const Index = ({ location, pages }) => {
   const { painting } = useStaticQuery(homeQuery)
   const [themeString, themeToggler] = useDarkMode()
+  const isDarkMode = themeString === 'dark'
   return (
     <Layout
       pathname={location.pathname}
@@ -44,7 +46,10 @@ const Index = ({ location, pages }) => {
           offset={0.5}
           speed={0.2}
         >
-          <Recommendations className='w-full' />
+          <Recommendations
+            className='w-full'
+            theme={useTransition(isDarkMode).toString()}
+          />
         </Section>
       </Parallax>
     </Layout>
