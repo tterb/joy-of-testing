@@ -2,8 +2,6 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 import { graphql, StaticQuery } from 'gatsby'
-// Components
-import SpeedCurve from './SpeedCurve'
 // Config
 import site from '../../config/website'
 
@@ -181,7 +179,6 @@ const Head = props => {
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content={description} />
       {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
-      <SpeedCurve />
       {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
       {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
       <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
