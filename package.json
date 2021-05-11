@@ -60,7 +60,7 @@
     "gatsby-transformer-remark": "^2.3.4",
     "gatsby-transformer-sharp": "^2.2.0",
     "gsap": "^3.6.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "polished": "^3.4.4",
     "prism-react-renderer": "^0.1.7",
     "prop-types": "^15.6.2",
