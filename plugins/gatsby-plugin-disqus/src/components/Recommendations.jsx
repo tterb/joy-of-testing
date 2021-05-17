@@ -34,10 +34,6 @@ export default class Recommendations extends React.Component {
         return function() {
             this.page.identifier = config.identifier
             this.page.url = config.url
-            this.page.title = config.title
-            this.page.remote_auth_s3 = config.remoteAuthS3
-            this.page.api_key = config.apiKey
-            this.language = config.language
         }
     }
 
@@ -83,4 +79,18 @@ export default class Recommendations extends React.Component {
     }
 }
 
-Recommendations.propTypes = {}
+Recommendations.propTypes = {
+    config: PropTypes.shape({
+       /*
+        * Allows the Disqus service to identify the thread on the current page.
+        * This is used to exclude the current page from the Recommendations.
+        */
+        identifier: PropTypes.string,
+        /*
+        * Allows the Disqus service to identify the thread on the current page.
+        * This is used to exclude the current page from the Recommendations.
+        * (If undefined, Disqus will use the global.location.href)
+        */
+        url: PropTypes.string,
+    }),
+}
