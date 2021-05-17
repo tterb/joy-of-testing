@@ -106,7 +106,10 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
           color={frontmatter.color}
           className='text-xl m-auto mt-0 mb-8 pt-6'
         >
-          <Recommendations theme={useTransition(isDarkMode).toString()} />
+          <Recommendations
+            config={disqusConfig}
+            theme={useTransition(isDarkMode).toString()}
+          />
           <MDXWrapper>{node.body}</MDXWrapper>
         </PostBody>
         <Disqus
