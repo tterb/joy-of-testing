@@ -25,8 +25,8 @@ const IconWrapper = styled.div`
   }
 `
 
-const Disqus = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 15">
+const Disqus = ({ className }) => (
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 15">
     <path className="a" d="M8.29.5A7.61,7.61,0,0,0,.58,8a7.23,7.23,0,0,0,.7,3.11L0,14.15l3.31-.43a7.73,7.73,0,0,0,5,1.78A7.61,7.61,0,0,0,16,8,7.61,7.61,0,0,0,8.29.5ZM12.5,8a3.88,3.88,0,0,1-4.2,4H5.5V4H8.34A3.8,3.8,0,0,1,12.5,8Z" transform="translate(0 -0.5)"/>
     <path className="a" d="M8.37,6H7.54V10h.83a1.88,1.88,0,0,0,2-2V8A1.88,1.88,0,0,0,8.37,6Z" transform="translate(0 -0.5)"/>
   </svg>
