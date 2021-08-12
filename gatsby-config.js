@@ -180,7 +180,7 @@ module.exports = {
         background_color: config.colors.background,
         theme_color: config.colors.accent,
         display: 'minimal-ui',
-        icon: `static/favicon.png`,
+        icon: `static/favicons/favicon.png`,
       },
     },
     `gatsby-plugin-netlify`,
