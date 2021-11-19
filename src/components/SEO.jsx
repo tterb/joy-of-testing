@@ -182,8 +182,6 @@ const Head = props => {
       {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
       {article && <script type="application/ld+json">{JSON.stringify(schemaArticle)}</script>}
       <script type="application/ld+json">{JSON.stringify(breadcrumb)}</script>
-      {/* Osano CMP script */}
-      <script src="https://cmp.osano.com/AzqNQLSp9XcSy1Nx4/a7627afe-6a4c-46a8-9938-8ad013de518b/osano.js"></script>
     </Helmet>
   )
 }
