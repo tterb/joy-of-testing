@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql, useStaticQuery } from 'gatsby'
+import Image from 'gatsby-image'
 // Hooks
 import useDarkMode from '../hooks/useDarkMode'
 // Components
 import Layout from '../components/Layout'
-import AwesomeLink from '../components/AwesomeLink'
 
 
 const PolicyPage = ({ location }) => {
+  const { cookieMonster } = useStaticQuery(policyQuery)
   const [themeString, themeToggler] = useDarkMode()
   return (
     <Layout
@@ -16,15 +18,19 @@ const PolicyPage = ({ location }) => {
       themeToggler={themeToggler}
     >
       <div className='relative w-full h-auto my-0 mx-auto'>
-        <div className='flex flex-col relative justify-center items-center w-7/10 max-w-xl h-auto mx-auto my-0 py-12'>
-            <h1 className='font-black text-6xl sm:text-7xl md:text-8xl leading-tighter w-9/10 my-0'>
+        <div className='flex flex-col relative justify-center items-center w-7/10 max-w-xl h-auto mx-auto my-0 pt-12 pb-0'>
+            <h1 className='font-black text-6xl sm:text-7xl md:text-8xl text-center leading-tighter w-9/10 mt-16'>
                 Privacy Policy
             </h1>
-            <span className='flex relative justify-center items-center text-xl text-center font-normal leading-normal tracking-tight mx-auto my-0 pt-4 pb-12'>
-                A big strong tree needs big strong roots. It's hard to see things when you're too close. Take a step back and look. In nature, dead trees are just as normal as live trees. We'll paint one happy little tree right here. Isn't that fantastic? You can just push a little tree out of your brush like that. If you hypnotize it, it will go away.<br />
-                I guess I'm a little <AwesomeLink>weird</AwesomeLink>. I like to talk to trees and animals. That's okay though; I have more fun than most people. We don't want to set these clouds on fire. Isn't it fantastic that you can change your mind and create all these happy things? Learn when to stop. We don't have anything but happy trees here. Maybe there's a happy little bush that lives right there.
+            <span className='flex relative justify-center items-center text-xl text-center font-normal leading-normal tracking-tight mx-auto mt-6 mb-auto pt-4 pb-12'>
+                Cookie Monster loves cookies.
             </span>
         </div>
+        <Image
+          className='w-screen h-auto mx-auto'
+          fluid={cookieMonster.childImageSharp.fluid}
+          alt='Cookie Monster Loves Cookies'
+        />
       </div>
     </Layout>
   )
@@ -34,3 +40,15 @@ PolicyPage.propTypes = {
 }
 
 export default PolicyPage
+
+const policyQuery = graphql`
+  query {
+    cookieMonster: file(name: {eq: "cookie-monster"}) {
+      childImageSharp {
+        fluid(maxWidth: 1200) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+  }
+`
