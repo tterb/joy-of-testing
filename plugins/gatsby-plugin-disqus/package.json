@@ -20,9 +20,9 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf components gatsby-node.js index.js utils.js",
-    "build": "yarn clean && babel src --out-dir . --copy-files --ignore **/__tests__",
+    "build": "npm run clean && babel src --out-dir . --copy-files --ignore **/__tests__",
     "test": "jest",
-    "watch": "yarn copy-files && babel -w src --out-dir . --copy-files --ignore **/__tests__",
+    "watch": "npm run copy-files && babel -w src --out-dir . --copy-files --ignore **/__tests__",
     "lint": "eslint --debug ."
   },
   "devDependencies": {
