@@ -6,16 +6,16 @@
   "homepage": "https://joyoftesting.com",
   "license": "MIT",
   "scripts": {
-    "build": "yarn build-plugin && gatsby build",
-    "build-plugin": "yarn --cwd ./plugins/gatsby-plugin-disqus && yarn --cwd ./plugins/gatsby-plugin-disqus build",
-    "bootstrap": "yarn && yarn build-plugin",
+    "build": "npm run build-plugin && gatsby build",
+    "build-plugin": "npm install --prefix ./plugins/gatsby-plugin-disqus && npm run --prefix ./plugins/gatsby-plugin-disqus build",
+    "bootstrap": "npm install && npm run build-plugin",
     "develop": "gatsby develop --port 4000",
-    "local": "GATSBY_ACTIVE_ENV=local yarn develop",
-    "backend": "GATSBY_ACTIVE_ENV=backend yarn develop",
-    "production": "yarn build && gatsby serve",
+    "local": "GATSBY_ACTIVE_ENV=local npm run develop",
+    "backend": "GATSBY_ACTIVE_ENV=backend npm run develop",
+    "production": "npm run build && gatsby serve",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .js,.jsx --fix --ignore-path .gitignore",
-    "lint:ci": "yarn lint --format junit -o results/eslint/result.xml"
+    "lint:ci": "npm run lint --format junit -o results/eslint/result.xml"
   },
   "keywords": [
     "joy",
