@@ -11,6 +11,7 @@ export const lightTheme = {
 	accent: '#F2433B',
 	buttonShadow: `0 2px 2px ${rgba('#000', 0.2)}`,
 	footer: '#2C2B30',
+	osanoBackground: `${rgba('#FFF', 0.9)}`,
     breakpoints: {
 		xs: '400px',
 		s: '560px',
@@ -38,6 +39,7 @@ export const darkTheme = {
 	accent: '#F2433B',
 	buttonShadow: `0 2px 4px ${rgba('#000', 0.75)}`,
 	footer: `${darken(0.04, '#1d1d20')}`,
+	osanoBackground: `${rgba('#1d1d20', 0.9)}`,
     breakpoints: {
 		xs: '400px',
 		s: '560px',
