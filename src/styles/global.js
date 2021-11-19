@@ -22,6 +22,28 @@ export const GlobalStyle = createGlobalStyle`
     }
 	}
 
+  .osano-cm-window {
+    .osano-cm-dialog {
+      background: ${({ theme }) => theme.osanoBackground};
+      color: ${({ theme }) => theme.text};
+      box-shadow: -2px 0 20px -12px;
+
+      .osano-cm-button {
+        border: none;
+        &.osano-cm-accept {
+          background: ${({ theme }) => theme.accent};
+        }
+        &.osano-cm-deny {
+          background: ${rgba('#666', 0.85)};
+        }
+      }
+
+      .osano-cm-link {
+        color: ${({ theme }) => theme.accent};
+      }
+    }
+  }
+
   #___gatsby {
     .tl-edges {
       height: 100vh !important;

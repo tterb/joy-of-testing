@@ -183,6 +183,14 @@ module.exports = {
         icon: `static/favicons/favicon.png`,
       },
     },
+    {
+      resolve: `gatsby-plugin-osano`,
+      options: {
+        customerId: 'AzqNQLSp9XcSy1Nx4',
+        ccid: 'a7627afe-6a4c-46a8-9938-8ad013de518b',
+        includeInDevelopment: true,
+      },
+  },
     `gatsby-plugin-netlify`,
     /* Must be placed at the end */
     `gatsby-plugin-offline`,
