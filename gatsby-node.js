@@ -1,12 +1,5 @@
 const _ = require('lodash')
 
-// graphql function doesn't throw an error so we have to check to check for the result.errors to throw manually
-const wrapper = promise => promise.then(result => {
-  if (result.errors) {
-    throw result.errors
-  }
-  return result
-})
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -34,21 +27,28 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
+// graphql function doesn't throw an error so we have to check to check for the query.errors to throw manually
+const queryWrapper = promise => promise.then(query => {
+  if (query.errors) {
+    throw query.errors
+  }
+  return query
+})
+
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   // page templates
   const postTemplate = require.resolve('./src/templates/post.jsx')
 
-  const result = await wrapper(
+  const result = await queryWrapper(
     graphql(`
       {
-        posts: allMdx(filter: { fields: { sourceInstanceName: { eq: "posts" } } } sort: { fields: [frontmatter___date], order: DESC }) {
-          edges {
-            node {
-              fields {
-                slug
-              }
+        posts: allMdx(filter: { fields: { sourceInstanceName: { eq: "posts" } } }
+        sort: { fields: [frontmatter___date], order: DESC }) {
+          nodes {
+            fields {
+              slug
             }
           }
         }
@@ -56,13 +56,13 @@ exports.createPages = async ({ graphql, actions }) => {
     `),
   )
 
-  result.data.posts.edges.forEach(post => {
+  result.data.posts.nodes.forEach(post => {
     createPage({
-      path: post.node.fields.slug,
+      path: post.fields.slug,
       component: postTemplate,
       context: {
         // Pass "slug" through context so we can reference it in our query like "$slug: String!"
-        slug: post.node.fields.slug,
+        slug: post.fields.slug,
       },
     })
   })

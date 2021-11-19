@@ -41,13 +41,19 @@ module.exports = {
       },
     ],
   },
+  /* Flags */
+  flags: {
+    PRESERVE_WEBPACK_CACHE: true,
+    PARALLEL_SOURCING: true,
+    FAST_DEV: true,
+    DEV_SSR: true,
+  },
   /* Plugins */
   plugins: [
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-styled-components`,
-    `gatsby-plugin-transition-link`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-disqus`,
@@ -55,6 +61,16 @@ module.exports = {
         shortname: SHORTNAME,
         embedUrl: EMBED_URL,
         recommendationsUrl: RECS_URL,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-image`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`, `avif`],
+          backgroundColor: `transparent`,
+          placeholder: `tracedSVG`,
+        },
       },
     },
     {
