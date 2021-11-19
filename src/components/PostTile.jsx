@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { animated } from 'react-spring'
 import styled from 'styled-components'
 // Components
@@ -14,8 +14,8 @@ import { CommentCount } from '../../plugins/gatsby-plugin-disqus'
 const Item = styled(animated.div)`
   position: relative;
   &:before {
-    display: block;
     content: '';
+    display: block;
     padding-top: 100%;
   }
 `
@@ -47,25 +47,25 @@ const PostTile = ({ post, postId, postUrl, style, testid }) => {
     title: post.frontmatter.title,
   }
   return (
-    <Item 
+    <Item
       key={post.fields.slug}
       data-testid={testid}
       style={style}
     >
       <Content className='tile-content'>
         <div className='tile-image-wrapper'>
-          <Image fluid={post.frontmatter.thumbnail.childImageSharp.fluid} />
+          <GatsbyImage image={post.frontmatter.thumbnail.childImageSharp.gatsbyImageData} />
         </div>
-        <PageLink 
-          to={post.fields.slug} 
+        <PageLink
+          to={post.fields.slug}
           color={post.frontmatter.color}
         >
-          <TracedGlow 
+          <TracedGlow
             className='absolute w-full h-full inset-0 opacity-25'
-            src={post.frontmatter.thumbnail.childImageSharp.fluid.tracedSVG}
+            src={post.frontmatter.thumbnail.childImageSharp.gatsbyImageData.tracedSVG}
             alt={post.frontmatter.title}
           />
-          <Overlay 
+          <Overlay
             className='tile-content'
             style={{ backgroundColor: post.frontmatter.color }}
           />

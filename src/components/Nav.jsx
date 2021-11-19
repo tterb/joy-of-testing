@@ -1,6 +1,6 @@
 import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import PropTypes from 'prop-types'
 import Fade from 'react-reveal/Fade'
 import styled from 'styled-components'
@@ -158,15 +158,18 @@ class Nav extends React.Component {
           <Wrapper className='nav-wrapper relative block font-title h-0 top-0 inset-x-0 z-50'>
             <Fade top delay={250}>
               <div className='flex absolute w-full h-16 flex-wrap items-center justify-between p-4 pt-10 box-border z-999'>
-                <LogoWrapper 
+                <LogoWrapper
                   className='relative'
-                  to={data.site.siteMetadata.menuLinks[0].link} 
+                  to={data.site.siteMetadata.menuLinks[0].link}
                   color={theme.accent}
                 >
-                    <Image className='logo-image' fluid={data.logo.childImageSharp.fluid} />
+                    <GatsbyImage
+                      className='logo-image'
+                      image={data.logo.childImageSharp.gatsbyImageData}
+                    />
                 </LogoWrapper>
-                { isMobile ? (
-                  <MenuButton 
+                {isMobile ? (
+                  <MenuButton
                     status={this.isPanelVisible()}
                     theme={theme}
                     onClick={this.toggleMenuPanel}
@@ -192,11 +195,17 @@ class Nav extends React.Component {
                 )}
               </div>
             </Fade>
-            { isMobile ? (
+            {isMobile ? (
               <MenuPanel className={`${this.isPanelVisible()} menu-panel fixed text-left w-screen min-h-screen top-0 right-0 p-8`} theme={theme}>
                 {data.site.siteMetadata.menuLinks.map((item) => (
                     <MenuItem className='relative block text-lg my-0 ml-0 mr-auto p-0 pb-4 z-999 cursor-pointer' key={item.name}>
-                      <PageLink className='font-bold hover:text-black no-underline border-none' color={color} to={item.link}>{item.name}</PageLink>
+                      <PageLink
+                        className='font-bold hover:text-black no-underline border-none'
+                        color={color}
+                        to={item.link}
+                      >
+                        {item.name}
+                      </PageLink>
                     </MenuItem>
                   )
                 )}
@@ -227,23 +236,20 @@ Nav.propTypes = {
 
 export default Nav
 
-const menuQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        menuLinks {
-          name
-          link
-          external
-        }
-      }
-    }
-    logo: file(name: {eq: "logo"}) {
-      childImageSharp {
-        fluid(maxWidth: 200) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+const menuQuery = graphql`{
+  site {
+    siteMetadata {
+      menuLinks {
+        name
+        link
+        external
       }
     }
   }
+  logo: file(name: {eq: "logo"}) {
+    childImageSharp {
+      gatsbyImageData(width: 200, layout: CONSTRAINED)
+    }
+  }
+}
 `

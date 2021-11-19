@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 // Components
 import { FluidContainer } from '../components/Container'
@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   height: 60vh;
 `
 
-const HeroImage = styled(Image)`
+const HeroImage = styled(GatsbyImage)`
   height: 60vh;
   > div {
     padding-bottom: 28% !important;
@@ -22,7 +22,7 @@ const Hero = ({ background, factor, offset, speed }) => (
     <Wrapper className='relative w-full mt-0 overflow-hidden'>
       <HeroImage
         className='w-full'
-        fluid={background.childImageSharp.fluid}
+        fluid={background.childImageSharp.gatsbyImageData}
         alt='Painting'
       />
     </Wrapper>

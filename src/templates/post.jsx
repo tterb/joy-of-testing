@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Image from 'gatsby-image'
+import { GatsbyImage } from 'gatsby-plugin-image'
 import { animated, useSpring, config } from 'react-spring'
 import styled from 'styled-components'
 import { darken } from 'polished'
@@ -72,7 +72,9 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
       <SEO pathname={location.pathname} node={node} article />
       <PostHero>
         <PostImage customcolor={frontmatter.color} className='post-image'>
-          <Image fluid={frontmatter.cover.childImageSharp.fluid} alt={frontmatter.title} />
+          <GatsbyImage
+            image={frontmatter.cover.childImageSharp.gatsbyImageData}
+            alt={frontmatter.title} />
         </PostImage>
         <Wrapper type='text' className='post-header absolute w-9/10 lg:w-4/5 left-0 right-0 bottom-0 mx-auto pt-8 pb-4 z-5'>
           <Title
@@ -136,39 +138,36 @@ Post.propTypes = {
 
 export default Post
 
-export const pageQuery = graphql`
-  query($slug: String!) {
-    site {
-      siteMetadata {
-        siteUrl
+export const pageQuery = graphql`query ($slug: String!) {
+  site {
+    siteMetadata {
+      siteUrl
+    }
+  }
+  mdx(fields: {slug: {eq: $slug}}) {
+    id
+    body
+    excerpt
+    fields {
+      slug
+    }
+    parent {
+      ... on File {
+        mtime
+        birthtime
       }
     }
-    mdx(fields: { slug: { eq: $slug } }) {
-      id,
-      body
-      excerpt
-      fields {
-        slug
-      }
-      parent {
-        ... on File {
-          mtime
-          birthtime
-        }
-      }
-      frontmatter {
-        title
-        date(formatString: "DD MMM YYYY")
-        desc
-        color
-        cover {
-          childImageSharp {
-            fluid(maxWidth: 1920, quality: 90) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
+    frontmatter {
+      title
+      date(formatString: "DD MMM YYYY")
+      desc
+      color
+      cover {
+        childImageSharp {
+          gatsbyImageData(quality: 90, layout: FULL_WIDTH)
         }
       }
     }
   }
+}
 `

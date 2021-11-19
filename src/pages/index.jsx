@@ -65,14 +65,11 @@ Index.defaultProps = {
 
 export default Index
 
-const homeQuery = graphql`
-  query {
-    painting: file(name: {eq: "hero-painting"}) {
-      childImageSharp {
-        fluid(maxWidth: 1200) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
+const homeQuery = graphql`{
+  painting: file(name: {eq: "hero-painting"}) {
+    childImageSharp {
+      gatsbyImageData(layout: FULL_WIDTH)
     }
   }
+}
 `

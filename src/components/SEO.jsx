@@ -21,7 +21,7 @@ const Head = props => {
 
   if (article) {
     const postMeta = node.frontmatter
-    const postImage = postMeta.cover.childImageSharp.fluid.src
+    const postImage = postMeta.cover.childImageSharp.gatsbyImageData.src
     title = `${postMeta.title} | ${site.siteTitle}`
     description = node.frontmatter.description
     image = `${homeURL}${postImage}`

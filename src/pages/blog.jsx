@@ -61,44 +61,51 @@ Blog.propTypes = {
 
 export default Blog
 
-export const blogQuery = graphql`
-  query BlogQuery {
-    site {
-      siteMetadata {
-        siteUrl
-      }
+export const blogQuery = graphql`query BlogQuery {
+  site {
+    siteMetadata {
+      siteUrl
     }
-    allMdx(
-      sort: { fields: [frontmatter___date], order: DESC }
-      filter: { fields: { sourceInstanceName: { eq: "posts" } } }
-    ) {
-      edges {
-        node {
-          id,
-          fields {
-            slug
-          }
-          frontmatter {
-            color
-            title
-            desc
-            cover {
-              childImageSharp {
-                fluid(maxWidth: 850, quality: 90, traceSVG: { color: "#ffffff" }) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
+  }
+  allMdx(
+    sort: {fields: [frontmatter___date], order: DESC}
+    filter: {fields: {sourceInstanceName: {eq: "posts"}}}
+  ) {
+    edges {
+      node {
+        id
+        fields {
+          slug
+        }
+        frontmatter {
+          color
+          title
+          desc
+          cover {
+            childImageSharp {
+              gatsbyImageData(
+                width: 850
+                quality: 90
+                traceSVG: {color: "#ffffff"}
+                placeholder: TRACED_SVG
+                layout: CONSTRAINED
+              )
             }
-            thumbnail: cover {
-              childImageSharp {
-                fluid(maxWidth: 480, quality: 90, traceSVG: { color: "#ffffff" }) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
+          }
+          thumbnail: cover {
+            childImageSharp {
+              gatsbyImageData(
+                width: 480
+                quality: 90
+                traceSVG: {color: "#ffffff"}
+                placeholder: TRACED_SVG
+                layout: CONSTRAINED
+              )
             }
           }
         }
       }
     }
   }
+}
 `
