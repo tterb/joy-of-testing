@@ -74,7 +74,8 @@ const Post = ({ data: { site, mdx: node }, location }, ...props) => {
         <PostImage customcolor={frontmatter.color} className='post-image'>
           <GatsbyImage
             image={frontmatter.cover.childImageSharp.gatsbyImageData}
-            alt={frontmatter.title} />
+            alt={frontmatter.title}
+          />
         </PostImage>
         <Wrapper type='text' className='post-header absolute w-9/10 lg:w-4/5 left-0 right-0 bottom-0 mx-auto pt-8 pb-4 z-5'>
           <Title

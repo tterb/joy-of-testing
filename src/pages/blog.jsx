@@ -86,7 +86,7 @@ export const blogQuery = graphql`query BlogQuery {
               gatsbyImageData(
                 width: 850
                 quality: 90
-                traceSVG: {color: "#ffffff"}
+                tracedSVGOptions: {color: "#ffffff"}
                 placeholder: TRACED_SVG
                 layout: CONSTRAINED
               )
@@ -97,7 +97,7 @@ export const blogQuery = graphql`query BlogQuery {
               gatsbyImageData(
                 width: 480
                 quality: 90
-                traceSVG: {color: "#ffffff"}
+                tracedSVGOptions: {color: "#ffffff"}
                 placeholder: TRACED_SVG
                 layout: CONSTRAINED
               )

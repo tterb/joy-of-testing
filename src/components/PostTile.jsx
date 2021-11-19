@@ -30,7 +30,7 @@ const Overlay = styled.div`
   z-index: -2;
 `
 
-const TracedGlow = styled.img`
+const TracedGlow = styled.span`
   object-fit: cover;
   filter: invert(100%);
   z-index: -1;
@@ -54,7 +54,10 @@ const PostTile = ({ post, postId, postUrl, style, testid }) => {
     >
       <Content className='tile-content'>
         <div className='tile-image-wrapper'>
-          <GatsbyImage image={post.frontmatter.thumbnail.childImageSharp.gatsbyImageData} />
+          <GatsbyImage
+            image={post.frontmatter.thumbnail.childImageSharp.gatsbyImageData}
+            alt={post.frontmatter.title}
+          />
         </div>
         <PageLink
           to={post.fields.slug}
@@ -62,7 +65,6 @@ const PostTile = ({ post, postId, postUrl, style, testid }) => {
         >
           <TracedGlow
             className='absolute w-full h-full inset-0 opacity-25'
-            src={post.frontmatter.thumbnail.childImageSharp.gatsbyImageData.tracedSVG}
             alt={post.frontmatter.title}
           />
           <Overlay

@@ -166,6 +166,7 @@ class Nav extends React.Component {
                     <GatsbyImage
                       className='logo-image'
                       image={data.logo.childImageSharp.gatsbyImageData}
+                      alt='logo'
                     />
                 </LogoWrapper>
                 {isMobile ? (

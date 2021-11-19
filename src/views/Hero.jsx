@@ -22,7 +22,7 @@ const Hero = ({ background, factor, offset, speed }) => (
     <Wrapper className='relative w-full mt-0 overflow-hidden'>
       <HeroImage
         className='w-full'
-        fluid={background.childImageSharp.gatsbyImageData}
+        image={background.childImageSharp.gatsbyImageData}
         alt='Painting'
       />
     </Wrapper>
